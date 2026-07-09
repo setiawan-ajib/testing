@@ -162,15 +162,6 @@ INFO_TEXT = {
             "Harus selalu lebih besar dari Curvature Soft Threshold."
         )
     ),
-    # "spinCurvNoiseGate": (
-    #     "Curvature Noise Gate",
-    #     _body(
-    #         f"{_lbl('Curvature Noise Gate')}"
-    #         "Gate kelengkungan untuk aktivasi offset jump penalty.<br><br>"
-    #         "Bila abs(curvature) di bawah nilai ini, penalty lompatan offset lebih sensitif.<br>"
-    #         "Naikkan ke 0.004–0.005 untuk mengurangi false penalty di jalan lurus."
-    #     )
-    # ),
     "spinKHead": (
         "Heading Correction Gain (K_HEAD)",
         _body(
@@ -190,16 +181,6 @@ INFO_TEXT = {
             "Turunkan ke 0.05–0.07 untuk deteksi lompatan lebih agresif."
         )
     ),
-    # "spinDxNoiseGate": (
-    #     "Heading dx Noise Gate (m)",
-    #     _body(
-    #         f"{_lbl('Heading dx Noise Gate')}"
-    #         "Threshold minimum perubahan lateral lane center (meter) "
-    #         "agar curvature_1pm dihitung.<br><br>"
-    #         "Mencegah pembagian dengan nilai sangat kecil saat jalan hampir lurus.<br>"
-    #         "Bisa diset ke <b>panjang_lane × 0.005</b> sebagai alternatif."
-    #     )
-    # ),
     "spinKLat": (
         "Lateral Correction Gain (K_LAT)",
         _body(
@@ -247,15 +228,6 @@ INFO_TEXT = {
             "Turunkan ke 0.08 untuk koreksi lebih sensitif saat offset kecil."
         )
     ),
-    # "spinSteerMargin": (
-    #     "Steer Saturation Margin (deg)",
-    #     _body(
-    #         f"{_lbl('Steer Saturation Margin')}"
-    #         "Jarak dari MAX_STEER_ABS di mana gain mulai diturunkan (fade-out zone).<br><br>"
-    #         "Gain akan linear fade ke 0 saat steering mendekati batas absolut.<br>"
-    #         "Kurangi ke 0.3 agar fade dimulai lebih dekat ke batas."
-    #     )
-    # ),
     "spinMaxLateralError": (
         "Max Lateral Error (m)",
         _body(
@@ -304,15 +276,6 @@ INFO_BTN_MAP_MAIN = {
     "btnInfoCorrectionLimit":      "spinCorrectionLimit",
     "btnInfoSteeringCenterOffset": "spinSteeringCenterOffset",
     "btnInfoBrakingLatency":       "spinBrakingLatency",
-    # Obstacle & Safety — dinonaktifkan sementara
-    # "btnInfoObstacleBuffer":       "spinObstacleBuffer",
-    # "btnInfoSensitivity":          "spinSensitivity",
-    # "btnInfoTTC":                  "spinTTC",
-    # Geometry — dinonaktifkan sementara
-    # "btnInfoVehicleWidth":         "spinVehicleWidth",
-    # "btnInfoScaleFactor":          "spinScaleFactor",
-    # "btnInfoCameraHeight":         "spinCameraHeight",
-    # "btnInfoLookAhead":            "spinLookAhead",
 }
 
 # Info button → spin widget mapping (Panel – Lane & LKA)
@@ -320,16 +283,13 @@ INFO_BTN_MAP_LANE_LKA = {
     "btnInfoPointDensityRef2":      "spinPointDensityRef",
     "btnInfoCurvSoft2":             "spinCurvSoft",
     "btnInfoCurvHard2":             "spinCurvHard",
-    # "btnInfoCurvNoiseGate2":        "spinCurvNoiseGate",
     "btnInfoKHead2":                "spinKHead",
     "btnInfoOffsetJumpThresh2":     "spinOffsetJumpThresh",
-    # "btnInfoDxNoiseGate2":          "spinDxNoiseGate",
     "btnInfoKLat2":                 "spinKLat",
     "btnInfoNormConfMin2":          "spinNormConfMin",
     "btnInfoMaxRateDeg2":           "spinMaxRateDeg",
     "btnInfoDeadzoneHeading2":      "spinDeadzoneHeading",
     "btnInfoDeadzoneLateral2":      "spinDeadzoneLateral",
-    # "btnInfoSteerMargin2":          "spinSteerMargin",
     "btnInfoMaxLateralError2":      "spinMaxLateralError",
     "btnInfoMaxSteerAbs2":          "spinMaxSteerAbs",
     "btnInfoSafetyMinConf2":        "spinSafetyMinConf",
@@ -656,18 +616,6 @@ class MainWindow(QtWidgets.QMainWindow):
     def _refresh_alerts(self):
         plc_ok = self._plc_connected
         camera_ok = self._camera_connected
-        
-        if hasattr(self, 'cardConnectionAlert'):
-            if not plc_ok:
-                if hasattr(self, 'txtCardMessage'):
-                    self.txtCardMessage.setText(
-                        "PLC tidak terhubung. Pastikan kabel jaringan terpasang "
-                        "dan PLC dalam kondisi menyala."
-                    )
-                self.cardConnectionAlert.show()
-                self.cardConnectionAlert.raise_()
-            else:
-                self.cardConnectionAlert.hide()
         
         if hasattr(self, 'cardCameraAlert'):
             if not camera_ok:

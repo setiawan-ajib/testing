@@ -10,15 +10,6 @@ from yolo.target_vehicle_selector import (
     get_ego_lane_roi
 )
 
-# PIXELS_PER_METER = 50.0
-
-# def pixel_to_distance(y2):
-#     A = 9.0412827602126e-05
-#     B = -0.05980948752174311
-#     C = 10.81836776329341
-
-#     distance = A * y2**2 + B * y2 + C
-#     return max(distance, 0)  # pastikan jarak tidak negatif
 CALIB_COEFF = {
     "Ax": 0.000000311478738,
     "Bx": -0.00000106792259,
@@ -113,10 +104,6 @@ class TrackingPipeline:
             if obj_class is None:
                 continue
 
-            #frame_h = h
-            #pixel_distance = max(frame_h - y2, 0)
-            #distance_m = pixel_distance / PIXELS_PER_METER
-            # distance_m = pixel_to_distance(y2)
             x_m, y_m = pixel_to_distance_2d((x1+x2)/2, y2, CALIB_COEFF)  # titik tengah x, bawah y
             distance_m = y_m
             distance_m = max(distance_m, 0)
@@ -155,19 +142,7 @@ class TrackingPipeline:
         )
         stable_warning_vehicle = self.warning_area_buffer.get_stable_objects()
 
-        nearest_objects = {}
-
-        for obj in tracked_objects:
-            cls = obj["class"]
-            y_bottom = obj["bbox"][3]
-
-            if cls not in nearest_objects:
-                nearest_objects[cls] = obj
-            else:
-                if y_bottom > nearest_objects[cls]["bbox"][3]:
-                    nearest_objects[cls] = obj
-
-        nearest_object_list = list(nearest_objects.values())
+        nearest_object_list = tracked_objects
 
         self.temporal_buffer.update(nearest_object_list)
         stable_objects = self.temporal_buffer.get_stable_objects()
@@ -211,10 +186,6 @@ class TrackingPipeline:
             if obj_class is None:
                 continue
 
-            #frame_h = h
-            #pixel_distance = max(frame_h - y2, 0)
-            #distance_m = pixel_distance / PIXELS_PER_METER
-            # distance_m = pixel_to_distance(y2)
             x_m, y_m = pixel_to_distance_2d((x1+x2)/2, y2, CALIB_COEFF)  # titik tengah x, bawah y
             distance_m = y_m
             distance_m = max(distance_m, 0)

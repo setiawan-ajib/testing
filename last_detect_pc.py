@@ -12,9 +12,7 @@ from utils.general import (
     check_img_size,
     check_imshow,
     check_requirements,
-    #cv2,
     non_max_suppression,
-    #print_args,
     scale_boxes,
     strip_optimizer,
 )
@@ -26,7 +24,6 @@ from lane_detection.ultrafast_lane_detector.ultrafast_lane_detector import Ultra
 from lane_detection.ultrafast_lane_detector.temporal_smoothing import TemporalLaneSmoother
 from decision_layer.fcw import FCW
 from safety_layer.safety_fcw import SafetyFCWBinary
-from safety_layer.safety_lka import SafetyLKA
 from argparse import Namespace
 from plc_omron.fins_interface import FINSInterface
 from ui.output_ui import ADASUI
@@ -385,13 +382,6 @@ def run(
                 image_width=im0_raw.shape[1],
                 image_height=im0_raw.shape[0]
             )
-
-            #print("FCW:", brake_decision)
-
-            # --- SAFETY FCW ---
-            safety_result = safety_fcw.update(brake_decision)
-
-            brake_cmd = safety_result["brake"]
                         
             h, w = im0_vis.shape[:2]
 
@@ -400,23 +390,16 @@ def run(
 
             annotator = Annotator(im0_vis, line_width=line_thickness)
 
-            # Tampilkan ego lane target & danger_vehicle
-            if ego_lane_target:
-                x1, y1, x2, y2 = ego_lane_target["bbox"]
-                cls = ego_lane_target["class"]
-                dist = ego_lane_target["distance_m"]
-                annotator.box_label([x1, y1, x2, y2], f"{cls.upper()} | {dist} M", color=(0, 0, 255))
-
-            for obj in stable_objects:
-                if ego_lane_target and obj["track_id"] == ego_lane_target["track_id"]:
-                    continue
+            for obj in tracking_results["tracked_objects"]:
                 x1, y1, x2, y2 = obj["bbox"]
                 cls = obj["class"]
                 track_id = obj["track_id"]
                 dist = obj["distance_m"]
+                conf = obj["confidence"]
+
                 annotator.box_label(
                     [x1, y1, x2, y2],
-                    f"{cls.upper()} | {dist} M",
+                    f"{cls.upper()} ID:{track_id} | {dist} M | {conf:.2f}",
                     color=colors(track_id, True)
                 )
 
