@@ -73,7 +73,7 @@ class TrackingPipeline:
         self.danger_area_buffer = TemporalBuffer(max_frames=10)
         self.warning_area_buffer = TemporalBuffer(max_frames=10)
 
-    def update(self, detections, w, h, lanes_points=None, lanes_detected=None):
+    def update(self, detections, w, h):
         
         if len(detections) > 0:
             sort_input = np.array([
@@ -119,9 +119,7 @@ class TrackingPipeline:
         ego_lane_target = select_target_vehicle(
             tracked_objects,
             w,
-            h,
-            lanes_points=lanes_points,
-            lanes_detected=lanes_detected
+            h
         )
 
         self.ego_lane_buffer.update(

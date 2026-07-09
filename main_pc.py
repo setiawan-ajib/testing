@@ -17,7 +17,6 @@ from config.config_wiring import (
 from config import shared_config
 from config.settings_store import save_settings, load_settings
 import last_detect_pc
-from plc_omron.setting_interface import UIFINSForwarder
 from utils.click_sound import ClickSoundFilter
 
 
@@ -308,9 +307,6 @@ class MainWindow(QtWidgets.QMainWindow):
         self.panelLaneLKA.hide()
         wire_config_panel(self)
         wire_lane_lka_panel(self)
-        self._forwarder = UIFINSForwarder()
-        
-        self._plc_connected = False
         self._camera_connected = False
 
         self._auto_load_last_settings()
@@ -377,17 +373,10 @@ class MainWindow(QtWidgets.QMainWindow):
         self._sync_timer.timeout.connect(self._sync_display_state)
         self._sync_timer.start()
         
-        self._plc_check_timer = QTimer(self)
-        self._plc_check_timer.setInterval(5000)
-        self._plc_check_timer.timeout.connect(self._poll_plc_connection)
-        self._plc_check_timer.start()
-        
         self._camera_check_timer = QTimer(self)
         self._camera_check_timer.setInterval(5000)
         self._camera_check_timer.timeout.connect(self._poll_camera_status)
         self._camera_check_timer.start()
-        
-        QTimer.singleShot(8000, self._initial_connection_check)
 
         # ── Langsung jalankan detection saat aplikasi dibuka ──
         self._start_detection_background()
@@ -476,7 +465,6 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def closeEvent(self, event):
         last_detect_pc.stop_detection()
-        self._forwarder.disconnect()
         event.accept()
 
     def _on_video_open_settings(self):
@@ -614,7 +602,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self._refresh_alerts()
 
     def _refresh_alerts(self):
-        plc_ok = self._plc_connected
+        # plc_ok = self._plc_connected
         camera_ok = self._camera_connected
         
         if hasattr(self, 'cardCameraAlert'):
@@ -629,11 +617,7 @@ class MainWindow(QtWidgets.QMainWindow):
             else:
                 self.cardCameraAlert.hide()
         
-        if not plc_ok and not camera_ok:
-            self.statusbar.showMessage("⚠ PLC dan Kamera tidak terhubung")
-        elif not plc_ok:
-            self.statusbar.showMessage("⚠ PLC tidak terhubung — Kamera OK")
-        elif not camera_ok:
+        if not camera_ok:
             self.statusbar.showMessage("⚠ Kamera tidak terdeteksi — PLC OK")
         else:
             if self.statusbar.currentMessage() != "System Ready... (PLC & Camera OK)":
@@ -641,22 +625,6 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def _initial_connection_check(self):
         plc_ok = self._load_config_from_plc()
-        self._check_and_show_connection_alert(plc_ok)
-    
-    def _poll_plc_connection(self):
-        def _worker():
-            try:
-                result = self._forwarder.read_ui_params()
-                plc_ok = result is not None
-            except Exception:
-                plc_ok = False
-
-            QTimer.singleShot(0, lambda: self._on_plc_poll_result(plc_ok))
-
-        t = threading.Thread(target=_worker, daemon=True, name="plc-poll")
-        t.start()
-
-    def _on_plc_poll_result(self, plc_ok: bool):
         self._check_and_show_connection_alert(plc_ok)
 
     def _poll_camera_status(self):

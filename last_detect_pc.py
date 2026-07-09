@@ -330,28 +330,11 @@ def run(
                         "class": names[c]
                     })
             
-            # ===============================
-            # UFLD LANE DETECTION
-            # ===============================
-            lane_frame_id += 1
-
-            if lane_frame_id % INFER_EVERY_N_FRAMES == 0 or lane_cache is None:
-                lanes_points_raw, lanes_detected = ufld.detect_lanes(im0_raw)
-                lane_cache = (lanes_points_raw, lanes_detected)
-
-            lanes_points_raw, lanes_detected = lane_cache
-            
-
-            lanes_points = smoother.smooth(lanes_points_raw, lanes_detected)
-            lanes_points = [lane if lane is not None else [] for lane in lanes_points]
-
             # --- INTEGRASI TRACKING PIPELINE ---
             tracking_results = pipeline.update(
                 detections, 
                 w=im0_raw.shape[1], 
-                h=im0_raw.shape[0],
-                lanes_points=lanes_points,
-                lanes_detected=lanes_detected
+                h=im0_raw.shape[0]
             )
 
             stable_objects   = tracking_results["stable_objects"]
@@ -372,16 +355,6 @@ def run(
                 target_obj = stable_objects[0]
             else:
                 target_obj = None
-
-            brake_decision = fcw_system.run(
-                danger_vehicle,
-                warning_vehicle,
-                ego_lane_target,
-                stable_objects,
-                target_obj=target_obj,
-                image_width=im0_raw.shape[1],
-                image_height=im0_raw.shape[0]
-            )
                         
             h, w = im0_vis.shape[:2]
 
@@ -399,7 +372,7 @@ def run(
 
                 annotator.box_label(
                     [x1, y1, x2, y2],
-                    f"{cls.upper()} ID:{track_id} | {dist} M | {conf:.2f}",
+                    f"{cls.upper()} ID:{track_id} | {conf:.2f}",
                     color=colors(track_id, True)
                 )
 
