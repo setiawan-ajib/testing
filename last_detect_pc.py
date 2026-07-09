@@ -1,6 +1,5 @@
 import argparse
 import os
-#import platform
 import sys
 import threading
 from pathlib import Path
@@ -21,24 +20,15 @@ from utils.general import (
 )
 from utils.torch_utils import select_device, smart_inference_mode
 from yolo.tracking_pipeline import TrackingPipeline
-from yolo.target_vehicle_selector import get_ego_lane_roi, get_danger_area_roi, get_warning_area_roi
-#import numpy as np
 import cv2
 import time
 from lane_detection.ultrafast_lane_detector.ultrafast_lane_detector import UltrafastLaneDetector
-# from line_detection_ufld.ultrafastLaneDetector.ultrafastLaneDetector import UltrafastLaneDetector
 from lane_detection.ultrafast_lane_detector.temporal_smoothing import TemporalLaneSmoother
-# from line_detection_ufld.ultrafastLaneDetector.temporal_smoothing import TemporalLaneSmoother
 from decision_layer.fcw import FCW
-from fusion_layer.ego_lane_estimation import estimate_ego_lane_data
-from fusion_layer.normalize_ego_lane import normalize_ego_lane
-from decision_layer.lka import lane_keeping_assist
 from safety_layer.safety_fcw import SafetyFCWBinary
 from safety_layer.safety_lka import SafetyLKA
 from argparse import Namespace
 from plc_omron.fins_interface import FINSInterface
-from plc_omron.fins_error_check import BrakeErrorMonitor
-from plc_omron.fins_steering_check import SteeringMonitor
 from ui.output_ui import ADASUI
 from config import shared_config
 
@@ -76,16 +66,6 @@ SETTING_ICON     = cv2.imread("assets/data/pictures/setting.png", cv2.IMREAD_UNC
 BACK_ICON        = cv2.imread("assets/data/pictures/back.png",    cv2.IMREAD_UNCHANGED)
 EGO_LANE_ICON    = cv2.imread("assets/data/pictures/lane.png", cv2.IMREAD_UNCHANGED)
 
-# ---Dummy belom ada plc----
-class DummySteeringMonitor:
-    def get_feedback(self):
-        return {"position": 0, "error": False}
-
-steering_monitor = DummySteeringMonitor()
-# --------------------------
-
-#steering_monitor = SteeringMonitor(plc)
-
 DISPLAY_ENABLED = False
 DISPLAY_RUNNING = False
 _camera_has_frames = False
@@ -95,8 +75,6 @@ _stop_flag = False           # sinyal untuk hentikan loop run()
 _detect_thread = None        # referensi thread deteksi
 _thread_lock = threading.Lock()
 
-#brake_monitor.start(callback=brake_error_callback)
-
 _on_open_settings_cb = None
 
 _mouse_x = 0
@@ -105,7 +83,6 @@ _mouse_clicked = False
 
 pipeline = TrackingPipeline()
 ufld = UltrafastLaneDetector(model_path="lane_detection/models/tusimple_18.pth", use_gpu=False)
-# ufld = UltrafastLaneDetector(model_path="lane_detection/models/culane_18.pth", use_gpu=False, dataset="culane")
 smoother = TemporalLaneSmoother(alpha=0.7)
 fcw_system = FCW(iou_threshold=0.5, alpha=0.5)
 safety_fcw = SafetyFCWBinary(
@@ -126,8 +103,6 @@ ui = ADASUI(
     ego_lane_icon=EGO_LANE_ICON,
     lane_colors=lane_colors
 )
-safety_lka = SafetyLKA(steering_monitor)
-#brake_monitor = BrakeErrorMonitor(plc, check_interval=0.1)
 
 def set_open_settings_callback(cb):
     global _on_open_settings_cb
@@ -241,23 +216,12 @@ def run(
     max_det=1000,  # maximum detections per image
     device="",  # cuda device, i.e. 0 or 0,1,2,3 or cpu
     view_img=False,  # show results
-    #save_txt=False,  # save results to *.txt
-    #save_format=0,  # save boxes coordinates in YOLO format or Pascal-VOC format (0 for YOLO and 1 for Pascal-VOC)
-    #save_csv=False,  # save results in CSV format
-    #save_conf=False,  # save confidences in --save-txt labels
-    #save_crop=False,  # save cropped prediction boxes
     nosave=False,  # do not save images/videos
-    #classes=None,  # filter by class: --class 0, or --class 0 2 3
     agnostic_nms=False,  # class-agnostic NMS
     augment=False,  # augmented inference
     visualize=False,  # visualize features
     update=False,  # update all models
-    #project=ROOT / "runs/detect",  # save results to project/name
-    #name="exp",  # save results to project/name
-    #exist_ok=False,  # existing project/name ok, do not increment
     line_thickness=3,  # bounding box thickness (pixels)
-    #hide_labels=False,  # hide labels
-    #hide_conf=False,  # hide confidences
     half=False,  # use FP16 half-precision inference
     dnn=False,  # use OpenCV DNN for ONNX inference
     vid_stride=1,  # video frame-rate stride
@@ -272,7 +236,6 @@ def run(
     set_camera_status(False)
     consecutive_failures = 0
     
-    #save_img = False  # save inference images
     is_file = Path(source).suffix[1:] in (IMG_FORMATS + VID_FORMATS)
     is_url = source.lower().startswith(("rtsp://", "rtmp://", "http://", "https://"))
     webcam = source.isnumeric() or source.endswith(".streams") or (is_url and not is_file)
@@ -305,19 +268,6 @@ def run(
         dataset = LoadStreams(source, img_size=imgsz, stride=stride, auto=pt, vid_stride=vid_stride)
         bs = len(dataset)
 
-        #---webcam asli
-        # cap = cv2.VideoCapture(int(source))  # index webcam USB
-        # cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)   # lock width
-        # cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)   # lock height
-        # cap.set(cv2.CAP_PROP_FPS, 30)             # lock FPS
-        # 
-        # # loop pengambilan frame
-        # while True:
-        #     ret, im0 = cap.read()
-        #     if not ret:
-        #         break
-        #     # lanjutkan pipeline seperti biasa
-
     elif screenshot:
         dataset = LoadScreenshots(source, img_size=imgsz, stride=stride, auto=pt)
     else:
@@ -332,7 +282,6 @@ def run(
     # Run inference
     model.warmup(imgsz=(1 if pt or model.triton else bs, 3, *imgsz))
     seen = 0
-    #windows = []
 
     for path, im, im0s, vid_cap, s in dataset:
 
@@ -379,12 +328,7 @@ def run(
             im0_vis = im0_raw.copy()
 
             p = Path(p)  # to Path
-            #save_path = None
-            #txt_path = None
             s += "{:g}x{:g} ".format(*im.shape[2:])  # print string
-            #gn = torch.tensor(im0_raw.shape)[[1, 0, 1, 0]]  # normalization gain whwh
-            #imc = im0_raw.copy() if save_crop else im0_raw  # for save_crop
-            #track_classes = {}
 
             # Sort
             detections = []
@@ -420,7 +364,6 @@ def run(
 
             lanes_points_raw, lanes_detected = lane_cache
             
-            #print("raw:", lanes_points_raw)
 
             lanes_points = smoother.smooth(lanes_points_raw, lanes_detected)
             lanes_points = [lane if lane is not None else [] for lane in lanes_points]
@@ -468,18 +411,7 @@ def run(
             # --- SAFETY FCW ---
             safety_result = safety_fcw.update(brake_decision)
 
-            #print("SAFETY FCW:", safety_result)
-
             brake_cmd = safety_result["brake"]
-            plc_output = {
-                "brake": brake_cmd,
-                "reason": safety_result["reason"]
-            }
-            
-            # try:
-            #     plc.update(plc_output)
-            # except Exception as e:
-            #     print(f"[PLC] Update failed (non-fatal): {e}")
                         
             h, w = im0_vis.shape[:2]
 
@@ -508,106 +440,11 @@ def run(
                     color=colors(track_id, True)
                 )
 
-            # print("DRAWING:", stable_objects)
             
             im0_vis = annotator.result()
 
-            # dangery/warning popup
-            if danger_vehicle:
-                im0_vis = ui.draw_danger_popup(im0_vis)
-            elif warning_vehicle:
-                im0_vis = ui.draw_warning_popup(im0_vis)
-
-            # --------EGO LANE ESTIMATION
-            ego_lane_data = estimate_ego_lane_data(
-                lanes_points, lanes_detected,
-                frame_width=im0_raw.shape[1],
-                frame_height=im0_raw.shape[0],
-                cfg=live_cfg
-            )
-            
-            
-            cx = ego_lane_data.get("center_x", None)
-            ego_cx = ego_lane_data.get("ego_center_x", None)
-
-            if cx is not None:
-                cx = int(cx * scale_x)
-
-            if ego_cx is not None:
-                ego_cx = int(ego_cx * scale_x)
-            
-            # print(f"[DEBUG] ego_lane_data conf: {ego_lane_data['confidence']:.3f}")
-
-            #print("smoothing:", lanes_points)
-            #print("ego lane:", ego_lane_data)
-
-            # --------EGO LANE NORMALIZATION
-            ego_lane_normalized = normalize_ego_lane(
-                lanes_points=lanes_points,
-                lanes_detected=lanes_detected,
-                frame_width=im0_raw.shape[1],
-                frame_height=im0_raw.shape[0],
-                confidence=ego_lane_data["confidence"],
-                center_offset=ego_lane_data["center_offset"],
-                lane_width_px=ego_lane_data["lane_width_px"],
-                cfg=live_cfg
-            )
-            
-            # print(f"[DEBUG] ego_lane_normalized: {ego_lane_normalized}")
-
-            steering_deg = 0.0
-
-            if ego_lane_normalized:           
-                # --- ambil feedback posisi setir dari PLC (contoh: register D10)
-                steering_fb = steering_monitor.get_feedback()
-                steering_actual_deg = steering_fb["position"]
-                steering_error_flag = steering_fb["error"]
-
-                steering_decision = lane_keeping_assist(
-                    ego_lane_normalized,
-                    frame_id=frame,
-                    prev_state=lka_state,
-                    steering_actual_deg=steering_actual_deg,
-                    cfg=live_cfg
-                )
-                lka_state["enable"] = steering_decision["enable"]
-
-                if steering_decision["enable"]:
-                    lka_state["heading_error"] = steering_decision["heading_error"]
-                else:
-                    lka_state["heading_error"] = 0.0
-            else:
-                steering_decision = None
-            
-            safe_steer = safety_lka.update(
-                steering_decision,
-                cfg=live_cfg
-            )
-
-            steering_deg = safe_steer["steering_cmd_deg"]
-            
-            # if steering_decision:
-            #     print(f"[DEBUG] steering_decision: enable={steering_decision['enable']}, heading={steering_decision['heading_error']:.3f}")
-            # print(f"[DEBUG] safe_steer: {safe_steer}")
-
             fps = 1.0 / (time.time() - frame_start)
 
-            # plc.update_steering(
-            #    lka_output={
-            #        "enable": lka_state["enable"],
-            #        "heading_error": steering_deg
-            #    },
-            #    max_rate_deg_per_sec=safety_lka.MAX_STEER_RATE
-            # )
-
-            # print("STEERING DATA:", steering_decision)
-            # print("SAFE LKA:", safe_steer)
-
-            im0_vis = ui.draw_steering_popup(
-                im0_vis,
-                steering_deg
-            )
-            
             # scale dari 1280x720 → ukuran im0
             lanes_points_scaled = scale_lanes(
                 lanes_points,
@@ -616,36 +453,7 @@ def run(
                 dst_size=(DISPLAY_W, DISPLAY_H)
             )
 
-            im0_vis = ui.draw_info_popup(
-                im0_vis,
-                steering_deg=steering_deg,
-                brake_cmd=brake_cmd,
-                tracked_object=tracking_results,
-                fps=fps
-            )
-
             im_display = cv2.resize(im0_vis, (DISPLAY_W, DISPLAY_H))
-            
-            # --- GAMBAR ROI LANE ---
-            danger_roi = get_danger_area_roi(DISPLAY_W, DISPLAY_H, cfg=live_cfg)
-            im_display = ui.draw_roi_overlay(
-                im_display,
-                danger_roi
-            )
-
-            warning_lane_roi = get_warning_area_roi(DISPLAY_W, DISPLAY_H, cfg=live_cfg)
-            im_display = ui.draw_roi_warning(
-                im_display,
-                warning_lane_roi
-            )
-
-            if show_ego_lane_roi:
-                ego_roi = get_ego_lane_roi(DISPLAY_W, DISPLAY_H, cfg=live_cfg)
-                im_display = ui.draw_ego_lane_roi(im_display, ego_roi, lane_center_x=cx, ego_center_x=ego_cx)
-
-            im_display = ui.draw_lanes(im_display, lanes_points_scaled, lanes_detected)
-
-            im_display = ui.draw_overlay_buttons(im_display)
 
             if DISPLAY_ENABLED:
                 # Buat window pertama kali jika belum ada
@@ -693,7 +501,6 @@ def run(
 
 
     set_camera_status(False)
-    # print("[CAMERA] Detection stopped, camera marked as offline")
     
     if DISPLAY_RUNNING:
         try:
@@ -701,12 +508,6 @@ def run(
         except Exception:
             pass
         DISPLAY_RUNNING = False
-
-    # kirim status kamera OFF ke plc
-    try:
-        plc.update_camera_status(False)
-    except Exception as e:
-        print(f"[DETECT] Failed to send camera OFF status: {e}")
 
     if update:
         strip_optimizer(weights[0])
