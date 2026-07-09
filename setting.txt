@@ -1,0 +1,137 @@
+lastdetect.py
+
+INFER_EVERY_N_FRAMES ---> harcode
+ufld.use_gpu ---> harcode
+fcw_system.iou_threshold ---> hardcode
+fcw_system.alpha ---> harcode
+---safety_fcw.conf_min ---> masuk menu setting sama kyk safety_fcw.py
+---safety_fcw.ttc_hard ---> masuk menu setting sama kyk safety_fcw.py
+---safety_fcw.stable_frames ---> masuk menu setting sama kyk safety_fcw.py
+---safety_fcw.latch_time ---> masuk menu setting sama kyk safety_fcw.py
+DISPLAY_W ---> hardcode
+DISPLAY_H ---> hardcode
+weights ---> harcode
+source ---> hardcode
+imgsz ---> hardcode
+conf_thres ---> hardcode
+iou_thres ---> harcode
+max_det ---> harcode
+classes ---> hardcode
+agnostic_nms ---> hardcode
+augment ---> hardcode
+line_thickness ---> harcode
+hide_labels ---> hardcode
+hide_conf ---> hardcode
+half ---> hardcode
+vid_stride ---> hardcode
+ALLOWED_CLASSES ----> hardcode
+plc.plc_ip ----> hardcode
+plc.heartbeat_interval ----> harcode
+view_img ---> harcode
+
+target_vehicle_selector.py
+---EGO_LANE_ROI (0.1, 0.85, 0.5, 0.47, 0.87, 0.48 factors) ---> masuk menu setting
+---DANGER_AREA_ROI (0.2, 0.8, 0.55, 0.45, 0.87, 0.6 factors) ---> masuk menu setting
+
+TemporalBuffer.max_frames ---> hardcode
+EgoLaneBuffer.max_frames ---> hardcode
+EgoLaneBuffer.min_count ---> hardcode
+Sort.max_age --> harcode
+Sort.min_hits --> harcode
+Sort.iou_threshold --> harcode
+temporal_buffer.max_frames ---> hardcode
+ego_lane_buffer.max_frames ---> harcode
+danger_area_buffer.max_frames ---> hardcode
+
+sort.py
+Sort.max_age --> harcode
+Sort.min_hits --> harcode
+Sort.iou_threshold --> harcode
+associate_detections_to_trackers.iou_threshold --> harcode
+KalmanFilter.R (measurement noise scaling) --> harcode
+KalmanFilter.P (state covariance scaling) --> harcode
+KalmanFilter.Q (process noise scaling) --> harcode
+
+ufld.py
+ModelConfig.img_w ---> hardcode
+ModelConfig.img_h ---> harcode
+ModelConfig.griding_num ---> harcode
+ModelConfig.cls_num_per_lane ---> harcode
+UltrafastLaneDetector.use_gpu ---> hardcode
+ImageTransform.Resize (288, 800) ---> harcode
+TemporalLaneSmoother.alpha ---> hardcode
+TemporalLaneSmoother.max_lanes ---> hardcode
+
+parsingNet.size (288, 800) ---> hardcode
+parsingNet.pretrained ---> hardcode
+parsingNet.backbone ---> harcode
+parsingNet.cls_dim ---> harcode
+resnet.layers ---> hardcode
+resnet.pretrained ---> hardcode
+
+ego_lane.py
+CURV_SOFT ---> hardcode
+CURV_HARD ---> hardcode
+frame_width * 0.25 (single-lane fallback offset factor) ---> hardcode
+num_points / 120.0 (density normalization factor) ---> hardcode
+curv_score_weight (0.2) ---> hardcode
+offset_norm_divisor (frame_width * 0.5) ---> hardcode
+offset_penalty_low_curv_factor (0.5) ----> hardcode
+offset_penalty_high_curv_factor (0.3) ---> hardcode
+offset_jump_threshold (frame_width * 0.1) ----> hardcode
+offset_jump_penalty (0.3) ---> hardcode
+
+normalize_ego_lane.py
+---lane_width_m ---> masuk menu setting
+y_ref (frame_height * 0.7) ---> hardcode
+min_lane_width_px (50) ---> hardcode
+y_near (frame_height * 0.6) ---> hardcode
+y_far (frame_height * 0.85) ---> harcode
+confidence_threshold (0.6) ---> hardcode
+
+fcw.py
+iou_threshold ---> hardcode
+alpha ---> harcode
+beta ---> harcode
+Y_VALID_MIN ---> hardcode
+Y_VALID_MAX ---> harcode
+PIXELS_PER_METER ---> hardcode
+ttc_hard_threshold (0.8) ---> hardcode
+ttc_medium_threshold (1.5) ---> hardcode
+ttc_low_threshold (2.5) ----> hardcode
+
+LKA.py
+---CONF_ON (0.70) ---> masuk menu setting
+---CONF_OFF (0.60) ---> masuk menu setting
+MAX_HEADING_MEAS (6.0) ---> hardcode
+MAX_HEADING_CMD (5.0)  ---> harcode tapi perlu disesuaikan dengan max steer degree di safetyLka.py
+MAX_LATERAL_SAFE (0.30) ---> hardcode
+FAIL_LATERAL (0.40) ----> hardcode
+DEADZONE_HEADING (0.25) ---> hardcode
+DEADZONE_LATERAL (0.10) ---> harcode
+MAX_RATE_DEG_PER_SEC (15.0) ---> hardcode
+MAX_LAT_CONTRIB (3.0) ----> harcode
+MAX_STEER_ABS (3.0) ---> harcode
+STEER_MARGIN (0.5) ---> hardcode
+K_LAT (2.0) ---> hardcode
+K_HEAD (1.0) ---> hardcode
+
+safety_fcw.py
+---conf_min ---> masuk menu setting
+---ttc_hard ---> masuk menu setting
+---stable_frames ---> masuk menu setting
+---latch_time ---> masuk menu setting
+
+SafetyLKA.py
+---MAX_STEER_DEG ---> masuk menu setting
+MAX_STEER_RATE ---> hardcode
+TIMEOUT_SEC ----> hardcode
+---MIN_CONFIDENCE ---> masuk menu setting sama kyk CONF_ON lka.py
+MIN_ENABLE_HOLD ---> hardcode
+STEER_POS_MIN ---> hardcode
+STEER_POS_MAX ---> hardcode
+POS_SCALE ---> hardcode
+---MAX_TRACK_ERROR ---> masuk menu setting
+
+
+

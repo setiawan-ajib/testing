@@ -1,0 +1,29 @@
+1. JANGAN INSTALL torch & torchvision dari pip biasa
+----------------------------------------------------
+Torch dan torchvision di Jetson HARUS menggunakan
+wheel resmi NVIDIA (CUDA enabled).
+
+    Install manual dari NVIDIA wheels sesuai JetPack:
+
+    contoh:
+    pip install torch-2.x.x+nvXX.XX-cp38-cp38-linux_aarch64.whl
+    pip install torchvision-0.xx.x+nvXX.XX-cp38-cp38-linux_aarch64.whl
+
+Catatan:
+- Versi HARUS sesuai JetPack, CUDA, dan Python Jetson.
+- Jika salah versi → CUDA tidak aktif / error runtime.
+
+
+2. Urutan Install yang BENAR di Jetson
+--------------------------------------
+
+STEP 1:
+    Install torch + torchvision NVIDIA build
+
+STEP 2:
+    pip install -r requirements_jetson.txt
+
+STEP 3:
+    Tes CUDA:
+        python -c "import torch; print(torch.cuda.is_available())"
+        → HARUS: True

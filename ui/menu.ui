@@ -1,0 +1,4417 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1024</width>
+    <height>535</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>TMMIN | ASP-TECH</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+QMainWindow { background-color: #020c1e; }
+QWidget#centralwidget { background-color: transparent; }
+QLabel#labelBg { background-color: transparent; }
+QPushButton#btnConfiguration {
+    background-color: rgba(255,255,255,100); font: 75 11pt &quot;MS Shell Dlg 2&quot;;
+    color: white; font-size: 20px; border-radius: 10px; padding: 8px 15px; text-align: left;
+}
+QPushButton#btnConfiguration:hover { background-color: rgba(255,255,255,180); }
+QPushButton#btnConfiguration:pressed { background-color: rgba(255,255,255,220); }
+QPushButton#btnConfiguration:checked {
+    background-color: rgba(0,160,255,180); color: white; border: 1px solid rgba(0,220,255,200);
+}
+QPushButton#btnLaneLKA {
+    background-color: rgba(255,255,255,100); font: 75 11pt &quot;MS Shell Dlg 2&quot;;
+    color: white; font-size: 20px; border-radius: 10px; padding: 8px 15px; text-align: left;
+}
+QPushButton#btnLaneLKA:hover { background-color: rgba(255,255,255,180); }
+QPushButton#btnLaneLKA:pressed { background-color: rgba(255,255,255,220); }
+QPushButton#btnLaneLKA:checked {
+    background-color: rgba(0,200,120,180); color: white; border: 1px solid rgba(0,255,150,200);
+}
+QPushButton#btnStart {
+    background-color: rgba(255,255,255,100); font: 75 11pt &quot;MS Shell Dlg 2&quot;;
+    color: white; font-size: 20px; border-radius: 10px; padding: 8px 15px; text-align: left;
+}
+QPushButton#btnStart:hover { background-color: rgba(255,255,255,180); }
+QPushButton#btnStart:pressed { background-color: rgba(255,255,255,220); }
+QPushButton#btnCardConfigHardware, QPushButton#btnCardConfigProgram, QPushButton#btnCardStart {
+    background-color: rgba(255,255,255,100); font: 75 11pt &quot;MS Shell Dlg 2&quot;;
+    color: white; font-size: 18px; border-radius: 10px; padding: 8px 12px; text-align: left;
+}
+QPushButton#btnCardConfigHardware:hover, QPushButton#btnCardConfigProgram:hover, QPushButton#btnCardStart:hover { background-color: rgba(255,255,255,180); }
+QPushButton#btnCardConfigHardware:pressed, QPushButton#btnCardConfigProgram:pressed, QPushButton#btnCardStart:pressed { background-color: rgba(255,255,255,220); }
+
+QStatusBar {
+    background-color: rgba(0,5,20,240); color: rgba(0,180,255,150);
+    font-family: &quot;MS Shell Dlg 2&quot;; font-size: 10px; border-top: 1px solid rgba(0,180,255,60);
+}
+QScrollArea { background: transparent; border: none; }
+QScrollArea &gt; QWidget &gt; QWidget { background: transparent; }
+QScrollBar:vertical {
+    background: rgba(255,255,255,20); width: 6px; border-radius: 3px; margin: 0px;
+}
+QScrollBar::handle:vertical {
+    background: rgba(0,180,255,150); border-radius: 3px; min-height: 24px;
+}
+QScrollBar::handle:vertical:hover { background: rgba(0,180,255,220); }
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical { height: 0px; }
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical { background: none; }
+   </string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="labelBg">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>-70</y>
+      <width>1024</width>
+      <height>591</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../assets/img/bg.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelBrand">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>14</y>
+      <width>200</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgba(150,210,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11px; font-weight: bold; letter-spacing: 1px; background: transparent;</string>
+    </property>
+    <property name="text">
+     <string>TMMIN  |  ASP-TECH</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="txtAdas">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>60</y>
+      <width>441</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>44</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgba(217,217,217); background: transparent;</string>
+    </property>
+    <property name="text">
+     <string>ADAS LEVEL 2</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelOverlay">
+    <property name="geometry">
+     <rect>
+      <x>659</x>
+      <y>20</y>
+      <width>351</width>
+      <height>235</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(217,217,217,80); border-radius: 20px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="txtMenu">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>30</y>
+      <width>131</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>18</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgba(217,217,217); background: transparent;</string>
+    </property>
+    <property name="text">
+     <string>MENU</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnConfiguration">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>70</y>
+      <width>311</width>
+      <height>44</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string> CONFIG HARDWARE</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../assets/icons/setting.png</normaloff>../assets/icons/setting.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>22</width>
+      <height>22</height>
+     </size>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnLaneLKA">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>122</y>
+      <width>311</width>
+      <height>44</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string> CONFIG PROGRAM</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../assets/icons/setting.png</normaloff>../assets/icons/setting.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>22</width>
+      <height>22</height>
+     </size>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnStart">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>174</y>
+      <width>311</width>
+      <height>44</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string> START</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../assets/icons/start.png</normaloff>../assets/icons/start.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QWidget" name="cardConnectionAlert" native="true">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>160</y>
+      <width>380</width>
+      <height>190</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(15,30,60,240), stop:1 rgba(22,55,95,220)); border: 1px solid rgba(0,200,255,140); border-radius: 24px;</string>
+    </property>
+    <widget class="QLabel" name="txtCardTitle">
+     <property name="geometry">
+      <rect>
+       <x>28</x>
+       <y>22</y>
+       <width>240</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>16</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgba(255,235,205,255); background: transparent;</string>
+     </property>
+     <property name="text">
+      <string>Connection Alert</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="txtCardMessage">
+     <property name="geometry">
+      <rect>
+       <x>28</x>
+       <y>64</y>
+       <width>324</width>
+       <height>98</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgba(220,220,220,235); background: transparent; line-height: 18px;</string>
+     </property>
+     <property name="text">
+      <string>PLC tidak terhubung. Cek kabel, daya, dan jaringan segera agar sistem kembali normal.</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnCloseCard">
+     <property name="geometry">
+      <rect>
+       <x>340</x>
+       <y>20</y>
+       <width>24</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton { background-color: rgba(255,90,90,225); color: white; border-radius: 12px; font-weight: bold; font-size: 10pt; } QPushButton:hover { background-color: rgba(255,110,110,235); }</string>
+     </property>
+     <property name="text">
+      <string>×</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="cardCameraAlert" native="true">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>160</y>
+      <width>380</width>
+      <height>190</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(15,30,60,240), stop:1 rgba(22,55,95,220)); border: 1px solid rgba(0,200,255,140); border-radius: 24px;</string>
+    </property>
+    <widget class="QLabel" name="txtCameraCardTitle">
+     <property name="geometry">
+      <rect>
+       <x>28</x>
+       <y>22</y>
+       <width>240</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>16</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgba(255,235,205,255); background: transparent;</string>
+     </property>
+     <property name="text">
+      <string>Camera Alert</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="txtCameraCardMessage">
+     <property name="geometry">
+      <rect>
+       <x>28</x>
+       <y>64</y>
+       <width>324</width>
+       <height>98</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgba(220,220,220,235); background: transparent; line-height: 18px;</string>
+     </property>
+     <property name="text">
+      <string>Kamera tidak terdeteksi. Cek koneksi kabel dan pastikan source video tersedia.</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnCloseCameraCard">
+     <property name="geometry">
+      <rect>
+       <x>340</x>
+       <y>20</y>
+       <width>24</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton { background-color: rgba(255,90,90,225); color: white; border-radius: 12px; font-weight: bold; font-size: 10pt; } QPushButton:hover { background-color: rgba(255,110,110,235); }</string>
+     </property>
+     <property name="text">
+      <string>×</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="labelOverlay_2">
+    <property name="geometry">
+     <rect>
+      <x>659</x>
+      <y>265</y>
+      <width>351</width>
+      <height>236</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(217,217,217,80); border-radius: 20px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QWidget" name="panelConfiguration" native="true">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>5</y>
+      <width>630</width>
+      <height>503</height>
+     </rect>
+    </property>
+    <property name="visible">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+QWidget#panelConfiguration {
+    background-color: rgba(2,12,30,230);
+    border-radius: 20px;
+    border: 1px solid rgba(0,180,255,80);
+}
+     </string>
+    </property>
+    <widget class="QLabel" name="panelBgOverlay">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>630</width>
+       <height>503</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(217,217,217,100); border-radius: 20px;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="txtConfigTitle">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>10</y>
+       <width>270</width>
+       <height>34</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgba(255,255,255,255); font-size: 15pt; font-weight: bold; background: transparent;</string>
+     </property>
+     <property name="text">
+      <string>Configuration</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnResetConfig">
+     <property name="geometry">
+      <rect>
+       <x>400</x>
+       <y>12</y>
+       <width>210</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-size: 11px; border-radius: 8px; padding: 5px 12px; border: none; } QPushButton:hover { background-color: rgba(255,255,255,120); }</string>
+     </property>
+     <property name="text">
+      <string>Reset to Default</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnLoadLastConfig">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>12</y>
+       <width>190</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton { background-color: rgba(0,180,255,80); color: white; font-size: 11px; border-radius: 8px; padding: 5px 12px; border: none; } QPushButton:hover { background-color: rgba(0,180,255,150); }</string>
+     </property>
+     <property name="text">
+      <string>Load Last Saved</string>
+     </property>
+    </widget>
+    <widget class="QFrame" name="lineDividerHeader">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>50</y>
+       <width>590</width>
+       <height>2</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(255,255,255,120); border-radius: 1px;</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::HLine</enum>
+     </property>
+    </widget>
+    <widget class="QScrollArea" name="configScrollArea">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>54</y>
+       <width>610</width>
+       <height>403</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">
+QScrollArea { background: transparent; border: none; }
+QScrollArea &gt; QWidget &gt; QWidget { background: transparent; }
+QScrollBar:vertical { background: rgba(0,0,0,0); width: 6px; border-radius: 3px; margin: 2px 0px; }
+QScrollBar::handle:vertical { background: rgba(0,180,255,160); border-radius: 3px; min-height: 24px; }
+QScrollBar::handle:vertical:hover { background: rgba(0,220,255,230); }
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical { height: 0px; border: none; }
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical { background: none; }
+      </string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarAsNeeded</enum>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="widgetResizable">
+      <bool>false</bool>
+     </property>
+     <widget class="QWidget" name="scrollContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>590</width>
+        <height>600</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background: transparent;</string>
+      </property>
+      <widget class="QLabel" name="lblSec1">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>8</y>
+         <width>400</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; font-weight: bold; background: transparent; letter-spacing: 1px;</string>
+       </property>
+       <property name="text">
+        <string>►  CONTROL &amp; STEERING TUNING</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblSteeringResp">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>34</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Steering Responsiveness</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnInfoSteeringResp">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>38</y>
+         <width>14</width>
+         <height>14</height>
+        </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,166,41,140); color: rgba(255,255,255,230); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 8pt; font-weight: bold; border: 1px solid rgba(255,166,41,180); border-radius: 7px; padding: 0px; } QPushButton:hover { background-color: rgba(255,166,41,210); } QPushButton:checked { background-color: #FFA629; border: 1px solid #FFB84D; color: white; }</string>
+       </property>
+       <property name="text">
+        <string>i</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnSteeringRespMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>31</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinSteeringResp">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>31</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>1.00</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnSteeringRespPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>31</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblSteadyState">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>72</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Steady-State Correction</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnInfoSteadyState">
+       <property name="geometry">
+        <rect>
+         <x>157</x>
+         <y>76</y>
+         <width>14</width>
+         <height>14</height>
+        </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,166,41,140); color: rgba(255,255,255,230); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 8pt; font-weight: bold; border: 1px solid rgba(255,166,41,180); border-radius: 7px; padding: 0px; } QPushButton:hover { background-color: rgba(255,166,41,210); } QPushButton:checked { background-color: #FFA629; border: 1px solid #FFB84D; color: white; }</string>
+       </property>
+       <property name="text">
+        <string>i</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnSteadyStateMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>69</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinSteadyState">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>69</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>0.50</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnSteadyStatePlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>69</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblDamping">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>106</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Damping / Stability</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnInfoDamping">
+       <property name="geometry">
+        <rect>
+         <x>127</x>
+         <y>110</y>
+         <width>14</width>
+         <height>14</height>
+        </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,166,41,140); color: rgba(255,255,255,230); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 8pt; font-weight: bold; border: 1px solid rgba(255,166,41,180); border-radius: 7px; padding: 0px; } QPushButton:hover { background-color: rgba(255,166,41,210); } QPushButton:checked { background-color: #FFA629; border: 1px solid #FFB84D; color: white; }</string>
+       </property>
+       <property name="text">
+        <string>i</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnDampingMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>103</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinDamping">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>103</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>0.80</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnDampingPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>103</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblCorrectionLimit">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>140</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Correction Limit</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnInfoCorrectionLimit">
+       <property name="geometry">
+        <rect>
+         <x>111</x>
+         <y>144</y>
+         <width>14</width>
+         <height>14</height>
+        </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,166,41,140); color: rgba(255,255,255,230); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 8pt; font-weight: bold; border: 1px solid rgba(255,166,41,180); border-radius: 7px; padding: 0px; } QPushButton:hover { background-color: rgba(255,166,41,210); } QPushButton:checked { background-color: #FFA629; border: 1px solid #FFB84D; color: white; }</string>
+       </property>
+       <property name="text">
+        <string>i</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnCorrectionLimitMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>137</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinCorrectionLimit">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>137</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>30.0</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnCorrectionLimitPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>137</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblSteeringCenterOffset">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>174</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Steering Center Offset</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnInfoSteeringCenterOffset">
+       <property name="geometry">
+        <rect>
+         <x>151</x>
+         <y>178</y>
+         <width>14</width>
+         <height>14</height>
+        </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,166,41,140); color: rgba(255,255,255,230); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 8pt; font-weight: bold; border: 1px solid rgba(255,166,41,180); border-radius: 7px; padding: 0px; } QPushButton:hover { background-color: rgba(255,166,41,210); } QPushButton:checked { background-color: #FFA629; border: 1px solid #FFB84D; color: white; }</string>
+       </property>
+       <property name="text">
+        <string>i</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnSteeringCenterOffsetMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>171</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinSteeringCenterOffset">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>171</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>0.0</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnSteeringCenterOffsetPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>171</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblBrakingLatency">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>208</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Braking Latency / Delay (ms)</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnInfoBrakingLatency">
+       <property name="geometry">
+        <rect>
+         <x>183</x>
+         <y>212</y>
+         <width>14</width>
+         <height>14</height>
+        </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,166,41,140); color: rgba(255,255,255,230); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 8pt; font-weight: bold; border: 1px solid rgba(255,166,41,180); border-radius: 7px; padding: 0px; } QPushButton:hover { background-color: rgba(255,166,41,210); } QPushButton:checked { background-color: #FFA629; border: 1px solid #FFB84D; color: white; }</string>
+       </property>
+       <property name="text">
+        <string>i</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnBrakingLatencyMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>205</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinBrakingLatency">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>205</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>200</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnBrakingLatencyPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>205</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QFrame" name="lineDivider2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>179</y>
+         <width>570</width>
+         <height>2</height>
+        </rect>
+       </property>
+       <property name="visible">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,80); border-radius: 1px;</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::HLine</enum>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblSec2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>189</y>
+         <width>400</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="visible">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; font-weight: bold; background: transparent; letter-spacing: 1px;</string>
+       </property>
+       <property name="text">
+        <string>►  OBSTACLE &amp; SAFETY SENSING</string>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QFrame" name="lineDividerBottom">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>455</y>
+       <width>590</width>
+       <height>2</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(255,255,255,120); border-radius: 1px;</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::HLine</enum>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnClosePanel">
+     <property name="geometry">
+      <rect>
+       <x>325</x>
+       <y>465</y>
+       <width>130</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 10pt; font-weight: bold; border: none; border-radius: 6px; padding: 6px 16px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+     </property>
+     <property name="text">
+      <string>CLOSE</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnSaveConfig">
+     <property name="geometry">
+      <rect>
+       <x>471</x>
+       <y>465</y>
+       <width>135</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 10pt; font-weight: bold; border: none; border-radius: 6px; padding: 6px 16px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+     </property>
+     <property name="text">
+      <string>SAVE</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="panelLaneLKA" native="true">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>5</y>
+      <width>630</width>
+      <height>503</height>
+     </rect>
+    </property>
+    <property name="visible">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+QWidget#panelLaneLKA {
+    background-color: rgba(2,12,30,230);
+    border-radius: 20px;
+    border: 1px solid rgba(0,200,120,80);
+}
+     </string>
+    </property>
+    <widget class="QLabel" name="panelBgOverlayLane">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>630</width>
+       <height>503</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(217,217,217,100); border-radius: 20px;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="txtLaneLKATitle">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>10</y>
+       <width>300</width>
+       <height>34</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgba(255,255,255,255); font-size: 15pt; font-weight: bold; background: transparent;</string>
+     </property>
+     <property name="text">
+      <string>Lane Detection &amp; LKA</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnResetLaneLKA">
+     <property name="geometry">
+      <rect>
+       <x>449</x>
+       <y>12</y>
+       <width>161</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-size: 11px; border-radius: 8px; padding: 5px 12px; border: none; } QPushButton:hover { background-color: rgba(255,255,255,120); }</string>
+     </property>
+     <property name="text">
+      <string>Reset to Default</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnLoadLastLaneLKA">
+     <property name="geometry">
+      <rect>
+       <x>274</x>
+       <y>12</y>
+       <width>161</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton { background-color: rgba(0,200,120,80); color: white; font-size: 10px; border-radius: 8px; padding: 5px 10px; border: 1px solid rgba(0,200,120,120); } QPushButton:hover { background-color: rgba(0,200,120,150); } QPushButton:pressed { background-color: rgba(0,200,120,220); }</string>
+     </property>
+     <property name="text">
+      <string>Load Last Saved</string>
+     </property>
+    </widget>
+    <widget class="QFrame" name="lineDividerHeaderLane">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>50</y>
+       <width>590</width>
+       <height>2</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(255,255,255,120); border-radius: 1px;</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::HLine</enum>
+     </property>
+    </widget>
+    <widget class="QScrollArea" name="laneScrollArea">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>54</y>
+       <width>610</width>
+       <height>403</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">
+QScrollArea { background: transparent; border: none; }
+QScrollArea &gt; QWidget &gt; QWidget { background: transparent; }
+QScrollBar:vertical { background: rgba(0,0,0,0); width: 6px; border-radius: 3px; margin: 2px 0px; }
+QScrollBar::handle:vertical { background: rgba(0,200,120,160); border-radius: 3px; min-height: 24px; }
+QScrollBar::handle:vertical:hover { background: rgba(0,230,140,230); }
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical { height: 0px; border: none; }
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical { background: none; }
+      </string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarAsNeeded</enum>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="widgetResizable">
+      <bool>false</bool>
+     </property>
+     <widget class="QWidget" name="laneScrollContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>590</width>
+        <height>1660</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background: transparent;</string>
+      </property>
+      <widget class="QLabel" name="lblSecLane">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>8</y>
+         <width>400</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; font-weight: bold; background: transparent; letter-spacing: 1px;</string>
+       </property>
+       <property name="text">
+        <string>►  LANE DETECTION TUNING</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblPointDensityRef">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>33</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Point Density Reference</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnInfoPointDensityRef2">
+       <property name="geometry">
+        <rect>
+         <x>163</x>
+         <y>37</y>
+         <width>14</width>
+         <height>14</height>
+        </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,166,41,140); color: rgba(255,255,255,230); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 8pt; font-weight: bold; border: 1px solid rgba(255,166,41,180); border-radius: 7px; padding: 0px; } QPushButton:hover { background-color: rgba(255,166,41,210); } QPushButton:checked { background-color: #FFA629; border: 1px solid #FFB84D; color: white; }</string>
+       </property>
+       <property name="text">
+        <string>i</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnPointDensityRefMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>30</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinPointDensityRef">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>30</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>120</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnPointDensityRefPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>30</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblCurvSoft">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>72</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Curvature Soft Threshold</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnInfoCurvSoft2">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>76</y>
+         <width>14</width>
+         <height>14</height>
+        </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,166,41,140); color: rgba(255,255,255,230); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 8pt; font-weight: bold; border: 1px solid rgba(255,166,41,180); border-radius: 7px; padding: 0px; } QPushButton:hover { background-color: rgba(255,166,41,210); } QPushButton:checked { background-color: #FFA629; border: 1px solid #FFB84D; color: white; }</string>
+       </property>
+       <property name="text">
+        <string>i</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnCurvSoftMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>69</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinCurvSoft">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>69</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>0.004</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnCurvSoftPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>69</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblCurvHard">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>110</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Curvature Hard Threshold</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnInfoCurvHard2">
+       <property name="geometry">
+        <rect>
+         <x>173</x>
+         <y>110</y>
+         <width>14</width>
+         <height>14</height>
+        </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,166,41,140); color: rgba(255,255,255,230); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 8pt; font-weight: bold; border: 1px solid rgba(255,166,41,180); border-radius: 7px; padding: 0px; } QPushButton:hover { background-color: rgba(255,166,41,210); } QPushButton:checked { background-color: #FFA629; border: 1px solid #FFB84D; color: white; }</string>
+       </property>
+       <property name="text">
+        <string>i</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnCurvHardMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>103</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinCurvHard">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>103</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>0.010</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnCurvHardPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>103</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblKHead">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>140</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Heading Correction Gain (K_HEAD)</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnInfoKHead2">
+       <property name="geometry">
+        <rect>
+         <x>220</x>
+         <y>144</y>
+         <width>14</width>
+         <height>14</height>
+        </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,166,41,140); color: rgba(255,255,255,230); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 8pt; font-weight: bold; border: 1px solid rgba(255,166,41,180); border-radius: 7px; padding: 0px; } QPushButton:hover { background-color: rgba(255,166,41,210); } QPushButton:checked { background-color: #FFA629; border: 1px solid #FFB84D; color: white; }</string>
+       </property>
+       <property name="text">
+        <string>i</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnKHeadMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>137</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinKHead">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>137</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>1.00</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnKHeadPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>137</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblKLat">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>174</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Lateral Correction Gain (K_LAT)</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnInfoKLat2">
+       <property name="geometry">
+        <rect>
+         <x>210</x>
+         <y>178</y>
+         <width>14</width>
+         <height>14</height>
+        </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,166,41,140); color: rgba(255,255,255,230); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 8pt; font-weight: bold; border: 1px solid rgba(255,166,41,180); border-radius: 7px; padding: 0px; } QPushButton:hover { background-color: rgba(255,166,41,210); } QPushButton:checked { background-color: #FFA629; border: 1px solid #FFB84D; color: white; }</string>
+       </property>
+       <property name="text">
+        <string>i</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnKLatMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>171</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinKLat">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>171</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>0.80</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnKLatPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>171</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblOffsetJumpThresh">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>208</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Offset Jump Threshold (×W)</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnInfoOffsetJumpThresh2">
+       <property name="geometry">
+        <rect>
+         <x>183</x>
+         <y>212</y>
+         <width>14</width>
+         <height>14</height>
+        </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,166,41,140); color: rgba(255,255,255,230); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 8pt; font-weight: bold; border: 1px solid rgba(255,166,41,180); border-radius: 7px; padding: 0px; } QPushButton:hover { background-color: rgba(255,166,41,210); } QPushButton:checked { background-color: #FFA629; border: 1px solid #FFB84D; color: white; }</string>
+       </property>
+       <property name="text">
+        <string>i</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnOffsetJumpThreshMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>205</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinOffsetJumpThresh">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>205</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>0.10</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnOffsetJumpThreshPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>205</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblNormConfMin">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>242</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Normalize Min Confidence</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnInfoNormConfMin2">
+       <property name="geometry">
+        <rect>
+         <x>168</x>
+         <y>246</y>
+         <width>14</width>
+         <height>14</height>
+        </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,166,41,140); color: rgba(255,255,255,230); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 8pt; font-weight: bold; border: 1px solid rgba(255,166,41,180); border-radius: 7px; padding: 0px; } QPushButton:hover { background-color: rgba(255,166,41,210); } QPushButton:checked { background-color: #FFA629; border: 1px solid #FFB84D; color: white; }</string>
+       </property>
+       <property name="text">
+        <string>i</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnNormConfMinMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>239</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinNormConfMin">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>239</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>0.50</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnNormConfMinPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>239</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QFrame" name="lineDividerLane">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>280</y>
+         <width>570</width>
+         <height>2</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,80); border-radius: 1px;</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::HLine</enum>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblSecLKA">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>288</y>
+         <width>400</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; font-weight: bold; background: transparent; letter-spacing: 1px;</string>
+       </property>
+       <property name="text">
+        <string>►  LKA CONTROL PARAMETERS</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblMaxRateDeg">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>312</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Max Steer Rate (deg/s)</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnInfoMaxRateDeg2">
+       <property name="geometry">
+        <rect>
+         <x>148</x>
+         <y>316</y>
+         <width>14</width>
+         <height>14</height>
+        </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,166,41,140); color: rgba(255,255,255,230); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 8pt; font-weight: bold; border: 1px solid rgba(255,166,41,180); border-radius: 7px; padding: 0px; } QPushButton:hover { background-color: rgba(255,166,41,210); } QPushButton:checked { background-color: #FFA629; border: 1px solid #FFB84D; color: white; }</string>
+       </property>
+       <property name="text">
+        <string>i</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnMaxRateDegMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>309</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinMaxRateDeg">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>309</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>15.0</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnMaxRateDegPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>309</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblDeadzoneHeading">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>346</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Deadzone Heading (deg)</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnInfoDeadzoneHeading2">
+       <property name="geometry">
+        <rect>
+         <x>153</x>
+         <y>350</y>
+         <width>14</width>
+         <height>14</height>
+        </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,166,41,140); color: rgba(255,255,255,230); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 8pt; font-weight: bold; border: 1px solid rgba(255,166,41,180); border-radius: 7px; padding: 0px; } QPushButton:hover { background-color: rgba(255,166,41,210); } QPushButton:checked { background-color: #FFA629; border: 1px solid #FFB84D; color: white; }</string>
+       </property>
+       <property name="text">
+        <string>i</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnDeadzoneHeadingMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>343</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinDeadzoneHeading">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>343</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>0.25</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnDeadzoneHeadingPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>343</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblDeadzoneLateral">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>380</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Deadzone Lateral (m)</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnInfoDeadzoneLateral2">
+       <property name="geometry">
+        <rect>
+         <x>142</x>
+         <y>384</y>
+         <width>14</width>
+         <height>14</height>
+        </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,166,41,140); color: rgba(255,255,255,230); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 8pt; font-weight: bold; border: 1px solid rgba(255,166,41,180); border-radius: 7px; padding: 0px; } QPushButton:hover { background-color: rgba(255,166,41,210); } QPushButton:checked { background-color: #FFA629; border: 1px solid #FFB84D; color: white; }</string>
+       </property>
+       <property name="text">
+        <string>i</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnDeadzoneLateralMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>377</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinDeadzoneLateral">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>377</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>0.10</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnDeadzoneLateralPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>377</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblMaxLateralError">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>414</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Max Lateral Error (m)</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnInfoMaxLateralError2">
+       <property name="geometry">
+        <rect>
+         <x>148</x>
+         <y>418</y>
+         <width>14</width>
+         <height>14</height>
+        </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,166,41,140); color: rgba(255,255,255,230); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 8pt; font-weight: bold; border: 1px solid rgba(255,166,41,180); border-radius: 7px; padding: 0px; } QPushButton:hover { background-color: rgba(255,166,41,210); } QPushButton:checked { background-color: #FFA629; border: 1px solid #FFB84D; color: white; }</string>
+       </property>
+       <property name="text">
+        <string>i</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnMaxLateralErrorMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>411</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinMaxLateralError">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>411</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>1.50</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnMaxLateralErrorPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>411</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblMaxSteerAbs">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>448</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Max Steering Command (deg)</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnInfoMaxSteerAbs2">
+       <property name="geometry">
+        <rect>
+         <x>185</x>
+         <y>452</y>
+         <width>14</width>
+         <height>14</height>
+        </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,166,41,140); color: rgba(255,255,255,230); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 8pt; font-weight: bold; border: 1px solid rgba(255,166,41,180); border-radius: 7px; padding: 0px; } QPushButton:hover { background-color: rgba(255,166,41,210); } QPushButton:checked { background-color: #FFA629; border: 1px solid #FFB84D; color: white; }</string>
+       </property>
+       <property name="text">
+        <string>i</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnMaxSteerAbsMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>445</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinMaxSteerAbs">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>445</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>5.0</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnMaxSteerAbsPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>445</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblSafetyMinConf">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>482</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Safety Min Confidence</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnInfoSafetyMinConf2">
+       <property name="geometry">
+        <rect>
+         <x>148</x>
+         <y>486</y>
+         <width>14</width>
+         <height>14</height>
+        </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,166,41,140); color: rgba(255,255,255,230); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 8pt; font-weight: bold; border: 1px solid rgba(255,166,41,180); border-radius: 7px; padding: 0px; } QPushButton:hover { background-color: rgba(255,166,41,210); } QPushButton:checked { background-color: #FFA629; border: 1px solid #FFB84D; color: white; }</string>
+       </property>
+       <property name="text">
+        <string>i</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnSafetyMinConfMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>479</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinSafetyMinConf">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>479</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>0.70</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnSafetyMinConfPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>479</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblSafetyMaxSteer">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>516</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Safety Max Steer Clamp (deg)</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnInfoSafetyMaxSteer2">
+       <property name="geometry">
+        <rect>
+         <x>193</x>
+         <y>520</y>
+         <width>14</width>
+         <height>14</height>
+        </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,166,41,140); color: rgba(255,255,255,230); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 8pt; font-weight: bold; border: 1px solid rgba(255,166,41,180); border-radius: 7px; padding: 0px; } QPushButton:hover { background-color: rgba(255,166,41,210); } QPushButton:checked { background-color: #FFA629; border: 1px solid #FFB84D; color: white; }</string>
+       </property>
+       <property name="text">
+        <string>i</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnSafetyMaxSteerMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>513</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinSafetyMaxSteer">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>513</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>3.0</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnSafetyMaxSteerPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>513</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QFrame" name="lineDividerRoiEgo">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>558</y>
+         <width>570</width>
+         <height>2</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,80); border-radius: 1px;</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::HLine</enum>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblSecRoiEgo">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>568</y>
+         <width>400</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; font-weight: bold; background: transparent; letter-spacing: 1px;</string>
+       </property>
+       <property name="text">
+        <string>►  ROI – EGO LANE</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblRoiEgoBlX">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>590</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Bottom-Left X</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiEgoBlXMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>587</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinRoiEgoBlX">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>587</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>0.10</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiEgoBlXPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>587</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblRoiEgoBlY">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>624</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Bottom-Left Y</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiEgoBlYMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>621</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinRoiEgoBlY">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>621</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>0.87</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiEgoBlYPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>621</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblRoiEgoBrX">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>658</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Bottom-Right X</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiEgoBrXMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>655</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinRoiEgoBrX">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>655</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>0.85</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiEgoBrXPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>655</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblRoiEgoBrY">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>692</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Bottom-Right Y</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiEgoBrYMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>689</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinRoiEgoBrY">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>689</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>0.87</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiEgoBrYPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>689</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblRoiEgoTlX">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>726</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Top-Left X</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiEgoTlXMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>723</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinRoiEgoTlX">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>723</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>0.47</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiEgoTlXPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>723</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblRoiEgoTlY">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>760</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Top-Left Y</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiEgoTlYMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>757</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinRoiEgoTlY">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>757</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>0.48</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiEgoTlYPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>757</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblRoiEgoTrX">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>794</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Top-Right X</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiEgoTrXMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>791</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinRoiEgoTrX">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>791</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>0.50</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiEgoTrXPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>791</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblRoiEgoTrY">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>828</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Top-Right Y</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiEgoTrYMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>825</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinRoiEgoTrY">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>825</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>0.48</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiEgoTrYPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>825</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QFrame" name="lineDividerRoiDanger">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>870</y>
+         <width>570</width>
+         <height>2</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,80); border-radius: 1px;</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::HLine</enum>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblSecRoiDanger">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>880</y>
+         <width>400</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; font-weight: bold; background: transparent; letter-spacing: 1px;</string>
+       </property>
+       <property name="text">
+        <string>►  ROI – DANGER AREA</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblRoiDangerBlX">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>910</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Bottom-Left X</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiDangerBlXMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>907</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinRoiDangerBlX">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>907</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>0.20</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiDangerBlXPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>907</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblRoiDangerBlY">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>944</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Bottom-Left Y</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiDangerBlYMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>941</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinRoiDangerBlY">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>941</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>0.87</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiDangerBlYPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>941</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblRoiDangerBrX">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>978</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Bottom-Right X</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiDangerBrXMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>975</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinRoiDangerBrX">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>975</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>0.80</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiDangerBrXPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>975</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblRoiDangerBrY">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>1012</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Bottom-Right Y</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiDangerBrYMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>1009</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinRoiDangerBrY">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>1009</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>0.87</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiDangerBrYPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>1009</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblRoiDangerTlX">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>1046</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Top-Left X</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiDangerTlXMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>1043</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinRoiDangerTlX">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>1043</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>0.30</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiDangerTlXPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>1043</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblRoiDangerTlY">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>1080</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Top-Left Y</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiDangerTlYMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>1077</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinRoiDangerTlY">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>1077</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>0.70</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiDangerTlYPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>1077</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblRoiDangerTrX">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>1114</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Top-Right X</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiDangerTrXMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>1111</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinRoiDangerTrX">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>1111</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>0.60</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiDangerTrXPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>1111</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblRoiDangerTrY">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>1148</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Top-Right Y</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiDangerTrYMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>1145</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinRoiDangerTrY">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>1145</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>0.70</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiDangerTrYPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>1145</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QFrame" name="lineDividerRoiWarn">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>1190</y>
+         <width>570</width>
+         <height>2</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,80); border-radius: 1px;</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::HLine</enum>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblSecRoiWarn">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>1200</y>
+         <width>400</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; font-weight: bold; background: transparent; letter-spacing: 1px;</string>
+       </property>
+       <property name="text">
+        <string>►  ROI – WARNING AREA</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblRoiWarnBlX">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>1230</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Bottom-Left X</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiWarnBlXMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>1227</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinRoiWarnBlX">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>1227</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>0.30</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiWarnBlXPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>1227</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblRoiWarnBlY">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>1264</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Bottom-Left Y</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiWarnBlYMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>1261</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinRoiWarnBlY">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>1261</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>0.70</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiWarnBlYPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>1261</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblRoiWarnBrX">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>1298</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Bottom-Right X</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiWarnBrXMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>1295</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinRoiWarnBrX">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>1295</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>0.60</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiWarnBrXPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>1295</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblRoiWarnBrY">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>1332</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Bottom-Right Y</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiWarnBrYMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>1329</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinRoiWarnBrY">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>1329</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>0.70</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiWarnBrYPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>1329</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblRoiWarnTlX">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>1366</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Top-Left X</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiWarnTlXMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>1363</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinRoiWarnTlX">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>1363</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>0.40</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiWarnTlXPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>1363</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblRoiWarnTlY">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>1400</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Top-Left Y</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiWarnTlYMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>1397</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinRoiWarnTlY">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>1397</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>0.55</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiWarnTlYPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>1397</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblRoiWarnTrX">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>1434</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Top-Right X</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiWarnTrXMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>1431</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinRoiWarnTrX">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>1431</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>0.50</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiWarnTrXPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>1431</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblRoiWarnTrY">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>1468</y>
+         <width>240</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(255,255,255,220); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 9pt; background: transparent;</string>
+       </property>
+       <property name="text">
+        <string>Top-Right Y</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiWarnTrYMinus">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>1465</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="spinRoiWarnTrY">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>1465</y>
+         <width>95</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 11pt; border: none; border-radius: 8px; padding: 2px 6px; selection-background-color: rgba(255,255,255,120);</string>
+       </property>
+       <property name="text">
+        <string>0.55</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnRoiWarnTrYPlus">
+       <property name="geometry">
+        <rect>
+         <x>423</x>
+         <y>1465</y>
+         <width>36</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 15pt; font-weight: bold; border: none; border-radius: 8px; padding: 0px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QFrame" name="lineDividerBottomLane">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>455</y>
+       <width>590</width>
+       <height>2</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(255,255,255,120); border-radius: 1px;</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::HLine</enum>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnClosePanelLane">
+     <property name="geometry">
+      <rect>
+       <x>325</x>
+       <y>465</y>
+       <width>130</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 10pt; font-weight: bold; border: none; border-radius: 6px; padding: 6px 16px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+     </property>
+     <property name="text">
+      <string>CLOSE</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnSaveLaneLKA">
+     <property name="geometry">
+      <rect>
+       <x>471</x>
+       <y>465</y>
+       <width>135</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton { background-color: rgba(255,255,255,60); color: white; font-family: &quot;MS Shell Dlg 2&quot;; font-size: 10pt; font-weight: bold; border: none; border-radius: 6px; padding: 6px 16px; } QPushButton:hover { background-color: rgba(255,255,255,120); } QPushButton:pressed { background-color: #122532; }</string>
+     </property>
+     <property name="text">
+      <string>SAVE</string>
+     </property>
+    </widget>
+   </widget>
+   <zorder>cardConnectionAlert</zorder>
+   <zorder>cardCameraAlert</zorder>
+   <zorder>labelBg</zorder>
+   <zorder>labelBrand</zorder>
+   <zorder>labelOverlay</zorder>
+   <zorder>labelOverlay_2</zorder>
+   <zorder>txtMenu</zorder>
+   <zorder>txtAdas</zorder>
+   <zorder>btnConfiguration</zorder>
+   <zorder>btnLaneLKA</zorder>
+   <zorder>btnStart</zorder>
+   <zorder>panelLaneLKA</zorder>
+   <zorder>panelConfiguration</zorder>
+  </widget>
+  <widget class="QStatusBar" name="statusbar">
+   <property name="styleSheet">
+    <string notr="true">QStatusBar { background-color: rgba(0,5,20,240); color: rgba(0,180,255,150); font-family: &quot;MS Shell Dlg 2&quot;; font-size: 10px; border-top: 1px solid rgba(0,180,255,60); }</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
