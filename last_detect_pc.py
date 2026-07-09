@@ -20,12 +20,7 @@ from utils.torch_utils import select_device, smart_inference_mode
 from yolo.tracking_pipeline import TrackingPipeline
 import cv2
 import time
-from lane_detection.ultrafast_lane_detector.ultrafast_lane_detector import UltrafastLaneDetector
-from lane_detection.ultrafast_lane_detector.temporal_smoothing import TemporalLaneSmoother
-from decision_layer.fcw import FCW
-from safety_layer.safety_fcw import SafetyFCWBinary
 from argparse import Namespace
-from plc_omron.fins_interface import FINSInterface
 from ui.output_ui import ADASUI
 from config import shared_config
 
@@ -42,14 +37,6 @@ lane_colors = [
     (255, 0, 0),    # lane 2
     (0, 255, 255)   # lane 3
 ]
-
-INFER_EVERY_N_FRAMES = 3 # ganti ke 2 saat pakai jetson dan webcam asli
-lane_frame_id = 0
-lane_cache = None
-lka_state = {
-    "enable": False,
-    "heading_error": 0.0
-}
 
 show_ego_lane_roi = True
 
@@ -79,16 +66,6 @@ _mouse_y = 0
 _mouse_clicked = False
 
 pipeline = TrackingPipeline()
-ufld = UltrafastLaneDetector(model_path="lane_detection/models/tusimple_18.pth", use_gpu=False)
-smoother = TemporalLaneSmoother(alpha=0.7)
-fcw_system = FCW(iou_threshold=0.5, alpha=0.5)
-safety_fcw = SafetyFCWBinary(
-    conf_min=0.7,
-    ttc_hard=0.8,
-    stable_frames=5,
-    latch_time=0.5
-)
-plc = FINSInterface(plc_ip="192.168.250.1", heartbeat_interval=1.0)
 ui = ADASUI(
     display_w=DISPLAY_W,
     display_h=DISPLAY_H,
@@ -336,25 +313,6 @@ def run(
                 w=im0_raw.shape[1], 
                 h=im0_raw.shape[0]
             )
-
-            stable_objects   = tracking_results["stable_objects"]
-            ego_lane_target  = tracking_results["ego_lane_target"]
-            danger_vehicle   = tracking_results["danger_vehicle"]
-            warning_vehicle  = tracking_results["warning_vehicle"]
-            # --------------------------------------------------
-
-            # --- RUN FCW ---
-            # Pilih kendaraan target untuk ego lane (prioritas ego_lane_target)
-            if danger_vehicle:
-                target_obj = danger_vehicle
-            elif warning_vehicle:
-                target_obj = warning_vehicle
-            elif ego_lane_target:
-                target_obj = ego_lane_target
-            elif stable_objects:
-                target_obj = stable_objects[0]
-            else:
-                target_obj = None
                         
             h, w = im0_vis.shape[:2]
 

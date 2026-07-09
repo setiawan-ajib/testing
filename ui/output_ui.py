@@ -113,9 +113,6 @@ class ADASUI:
         setting_cx = back_cx - (btn_radius * 2) - gap
         setting_cy = back_cy
 
-        ego_cx     = setting_cx - (btn_radius * 2) - gap
-        ego_cy     = back_cy
-
         frame, self._btn_setting_rect = self._draw_icon_button(
             frame, self.SETTING_ICON, setting_cx, setting_cy, icon_size
         )
@@ -125,39 +122,15 @@ class ADASUI:
 
         bg_alpha = 100 if lpc.show_ego_lane_roi else 40
         overlay = frame.copy()
-        cv2.circle(overlay, (ego_cx, ego_cy), btn_radius, (255, 255, 255), -1)
         frame = cv2.addWeighted(overlay, bg_alpha / 255.0, frame, 1 - (bg_alpha / 255.0), 0)
-
-        if self.EGO_LANE_ICON is not None:
-            ico = self.EGO_LANE_ICON.copy()
-            ico = cv2.resize(ico, (icon_size, icon_size))
-
-            if not lpc.show_ego_lane_roi:
-                gray = cv2.cvtColor(ico[:, :, :3], cv2.COLOR_BGR2GRAY)
-                gray_bgr = cv2.cvtColor(gray, cv2.COLOR_GRAY2BGR)
-                if ico.shape[2] == 4:
-                    alpha_ch = ico[:, :, 3:4]
-                    ico = np.concatenate([gray_bgr, alpha_ch], axis=2)
-                else:
-                    ico = gray_bgr
-
-            ix = ego_cx - icon_size // 2
-            iy = ego_cy - icon_size // 2
-            frame = self.overlay_png(frame, ico, ix, iy)
-
-        x1 = ego_cx - btn_radius
-        y1 = ego_cy - btn_radius
-        x2 = ego_cx + btn_radius
-        y2 = ego_cy + btn_radius
-        self._btn_ego_toggle_rect = (x1, y1, x2, y2)
 
         return frame
 
-    def is_click_ego_toggle(self, x, y):
-        if self._btn_ego_toggle_rect is None:
-            return False
-        x1, y1, x2, y2 = self._btn_ego_toggle_rect
-        return x1 <= x <= x2 and y1 <= y <= y2
+    # def is_click_ego_toggle(self, x, y):
+    #     if self._btn_ego_toggle_rect is None:
+    #         return False
+    #     x1, y1, x2, y2 = self._btn_ego_toggle_rect
+    #     return x1 <= x <= x2 and y1 <= y <= y2
 
     def is_click_setting(self, x, y):
         if self._btn_setting_rect is None:
