@@ -182,12 +182,6 @@ def _run_safe(opt):
             pass
         print("[DETECT] Thread finished.")
 
-def brake_error_callback(error: bool):
-    if error:
-        plc.trigger_buzzer(True)
-    else:
-        plc.trigger_buzzer(False)
-
 def scale_lanes(lanes_points, src_size, dst_size):
     src_w, src_h = src_size
     dst_w, dst_h = dst_size
@@ -200,10 +194,6 @@ def scale_lanes(lanes_points, src_size, dst_size):
             scaled_lane.append([int(x * sx), int(y * sy)])
         scaled.append(scaled_lane)
     return scaled
-
-def toggle_ego_lane_roi():
-    global show_ego_lane_roi
-    show_ego_lane_roi = not show_ego_lane_roi
 
 @smart_inference_mode()
 def run(
@@ -247,10 +237,6 @@ def run(
     if not webcam and not screenshot and is_file:
         if not Path(source).exists():
             print(f"[DETECT] ERROR: Source video tidak ditemukan: {source}")
-            try:
-                plc.update_camera_status(False)
-            except Exception as e:
-                print(f"[DETECT] Failed to send camera OFF status: {e}")
             return
 
     # Load model
@@ -272,12 +258,6 @@ def run(
         dataset = LoadScreenshots(source, img_size=imgsz, stride=stride, auto=pt)
     else:
         dataset = LoadImages(source, img_size=imgsz, stride=stride, auto=pt, vid_stride=vid_stride)
-
-    # kirim status kamera ketika ON ke plc
-    try:
-        plc.update_camera_status(True)
-    except Exception as e:
-        print(f"[DETECT] Failed to send camera ON status: {e}")
 
     # Run inference
     model.warmup(imgsz=(1 if pt or model.triton else bs, 3, *imgsz))
@@ -445,15 +425,9 @@ def run(
 
             fps = 1.0 / (time.time() - frame_start)
 
-            # scale dari 1280x720 → ukuran im0
-            lanes_points_scaled = scale_lanes(
-                lanes_points,
-                # src_size=(1280, 720),
-                src_size=(im0_raw.shape[1], im0_raw.shape[0]),
-                dst_size=(DISPLAY_W, DISPLAY_H)
-            )
-
             im_display = cv2.resize(im0_vis, (DISPLAY_W, DISPLAY_H))
+
+            im_display = ui.draw_overlay_buttons(im_display)
 
             if DISPLAY_ENABLED:
                 # Buat window pertama kali jika belum ada
@@ -473,8 +447,6 @@ def run(
                         disable_display()
                         if _on_open_settings_cb is not None:
                             _on_open_settings_cb()
-                    elif ui.is_click_ego_toggle(_mouse_x, _mouse_y): 
-                        toggle_ego_lane_roi()
 
                 key = cv2.waitKey(1) & 0xFF
 
