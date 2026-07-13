@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 from config import shared_config
 
-TARGET_CLASSES = ["car", "person"]
+TARGET_CLASSES = ["car", "person", "bib-number"]
 
 def get_ego_lane_roi(image_width, image_height, cfg=None):
     if cfg is None:

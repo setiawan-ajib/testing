@@ -23,6 +23,7 @@ import time
 from argparse import Namespace
 from ui.output_ui import ADASUI
 from config import shared_config
+from OCR.bib_ocr import BibOCR
 
 
 FILE = Path(__file__).resolve()
@@ -77,6 +78,8 @@ ui = ADASUI(
     ego_lane_icon=EGO_LANE_ICON,
     lane_colors=lane_colors
 )
+
+ocr = BibOCR()
 
 def set_open_settings_callback(cb):
     global _on_open_settings_cb
@@ -294,7 +297,7 @@ def run(
                     im0_raw.shape
                 ).round()
                 
-                ALLOWED_CLASSES = ["person", "laptop", "car"]
+                ALLOWED_CLASSES = ["person", "laptop", "car", "bib-number"]
                 
                 for *xyxy, conf, cls in det:
                     c = int(cls)
@@ -327,6 +330,16 @@ def run(
                 track_id = obj["track_id"]
                 dist = obj["distance_m"]
                 conf = obj["confidence"]
+
+                crop = im0_raw[
+                    int(y1):int(y2),
+                    int(x1):int(x2)
+                ]
+                ocr_result = ocr.process(crop)
+                if ocr_result.valid:
+                    print(
+                        f"Track {track_id} : {ocr_result.number}"
+                    )
 
                 annotator.box_label(
                     [x1, y1, x2, y2],
@@ -442,8 +455,8 @@ def parse_opt():
     """
     #----versi harcode JETSON
     opt = Namespace(
-        weights=[ROOT / "yolov5n.pt"],
-        source="assets/data/videos/ADAS_testing_video.mp4",
+        weights=[ROOT / "best.pt"],
+        source="assets/data/videos/bib_test.mp4",
         # source="0",
         device="CPU",
         view_img=True,
