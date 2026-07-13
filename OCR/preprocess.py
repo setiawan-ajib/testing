@@ -1,11 +1,7 @@
 import cv2
 import numpy as np
-
 from OCR.ocr_config import OCRConfig
-
-
 class ImagePreprocessor:
-
     def __init__(self):
         pass
 
@@ -17,71 +13,42 @@ class ImagePreprocessor:
             return None
 
         img = image.copy()
-
-        # ===================================
-        # Resize
-        # ===================================
+        pad = 20
+        img = cv2.copyMakeBorder(
+            img,
+            pad,
+            pad,
+            pad,
+            pad,
+            cv2.BORDER_CONSTANT,
+            value=(255,255,255)
+        )
         img = self.resize(img)
+        gray = self.to_gray(img)
 
-        # ===================================
-        # Convert Gray
-        # ===================================
-        img = self.to_gray(img)
-
-        # ===================================
-        # CLAHE
-        # ===================================
         if OCRConfig.APPLY_CLAHE:
-            img = self.apply_clahe(img)
+            gray = self.apply_clahe(gray)
 
-        # ===================================
-        # Denoise
-        # ===================================
-        if OCRConfig.APPLY_DENOISE:
-            img = self.denoise(img)
-
-        # ===================================
-        # Sharpen
-        # ===================================
         if OCRConfig.APPLY_SHARPEN:
-            img = self.sharpen(img)
+            gray = self.sharpen(gray)
 
-        # ===================================
-        # Threshold
-        # ===================================
-        if OCRConfig.APPLY_THRESHOLD:
-            img = self.threshold(img)
-
-        # ===================================
-        # Convert kembali ke BGR
-        # untuk PaddleOCR
-        # ===================================
-        if len(img.shape) == 2:
-
-            img = cv2.cvtColor(
-                img,
-                cv2.COLOR_GRAY2BGR
-            )
+        img = cv2.cvtColor(
+            gray,
+            cv2.COLOR_GRAY2BGR
+        )
 
         return img
 
-    # =======================================================
-    # Individual Processing
-    # =======================================================
-
     def resize(self, image):
-
         target_width = OCRConfig.RESIZE_WIDTH
 
         if OCRConfig.KEEP_ASPECT_RATIO:
-
             h, w = image.shape[:2]
 
             if w == target_width:
                 return image
 
             scale = target_width / w
-
             target_height = int(h * scale)
 
             return cv2.resize(
@@ -100,23 +67,19 @@ class ImagePreprocessor:
             )
 
     def to_gray(self, image):
-
         return cv2.cvtColor(
             image,
             cv2.COLOR_BGR2GRAY
         )
 
     def apply_clahe(self, image):
-
         clahe = cv2.createCLAHE(
             clipLimit=2.0,
             tileGridSize=(8, 8)
         )
-
         return clahe.apply(image)
 
     def denoise(self, image):
-
         return cv2.fastNlMeansDenoising(
             image,
             None,
@@ -126,7 +89,6 @@ class ImagePreprocessor:
         )
 
     def sharpen(self, image):
-
         kernel = np.array([
             [0, -1, 0],
             [-1, 5, -1],
@@ -140,12 +102,10 @@ class ImagePreprocessor:
         )
 
     def threshold(self, image):
-
         _, thresh = cv2.threshold(
             image,
             0,
             255,
             cv2.THRESH_BINARY + cv2.THRESH_OTSU
         )
-
         return thresh

@@ -343,7 +343,8 @@ def run(
 
                     bib_result = bib_manager.update(
                         track_id,
-                        bib_crop
+                        bib_crop,
+                        frame
                     )
 
                     print(
