@@ -21,7 +21,9 @@ class PaddleEngine:
             lang=OCRConfig.LANGUAGE,
 
             # PaddleOCR 3.x
-            use_textline_orientation=True
+            use_textline_orientation=False,
+            use_doc_orientation_classify=False,
+            use_doc_unwarping=False
         )
 
         print("[OCR] PaddleOCR ready")
@@ -47,6 +49,11 @@ class PaddleEngine:
         try:
 
             result = self.ocr.predict(image)
+
+            # print("====================")
+            # print(type(result))
+            # print(result)
+            # print("====================")
 
 
             best_text = None
@@ -104,11 +111,21 @@ class PaddleEngine:
             return best_text, best_conf
 
 
+        # except Exception as e:
+
+        #     print(
+        #         "[OCR ERROR]",
+        #         e
+        #     )
+
+        #     return None, 0.0
+
         except Exception as e:
 
-            print(
-                "[OCR ERROR]",
-                e
-            )
+            import traceback
+
+            print("================ OCR ERROR ================")
+            traceback.print_exc()
+            print("===========================================")
 
             return None, 0.0

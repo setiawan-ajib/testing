@@ -52,6 +52,17 @@ class ImagePreprocessor:
         if OCRConfig.APPLY_THRESHOLD:
             img = self.threshold(img)
 
+        # ===================================
+        # Convert kembali ke BGR
+        # untuk PaddleOCR
+        # ===================================
+        if len(img.shape) == 2:
+
+            img = cv2.cvtColor(
+                img,
+                cv2.COLOR_GRAY2BGR
+            )
+
         return img
 
     # =======================================================

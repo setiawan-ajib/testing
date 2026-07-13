@@ -2,7 +2,9 @@ from dataclasses import dataclass
 from typing import Optional
 
 from OCR.preprocess import ImagePreprocessor
+from OCR.bib_validator import BibValidator
 from OCR.paddle_engine import PaddleEngine
+import cv2
 
 
 @dataclass
@@ -21,6 +23,7 @@ class BibOCR:
 
         self.preprocessor = ImagePreprocessor()
         self.engine = PaddleEngine()
+        self.validator = BibValidator()
 
     def process(self, image):
         if image is None:
@@ -37,6 +40,10 @@ class BibOCR:
         # =============================
 
         processed = self.preprocessor.process(image)
+        cv2.imwrite(
+            "debug_processed.jpg",
+            processed
+        )
 
         # =============================
         # Step 2
@@ -51,7 +58,18 @@ class BibOCR:
         # valid = False
 
         text, confidence = self.engine.read(processed)
-        valid = text is not None
+        valid, clean_text = self.validator.validate(text)
+
+        if valid:
+            text = clean_text
+        else:
+            text = None
+
+        print(
+            f"[BIB OCR] "
+            f"TEXT:{text} "
+            f"CONF:{confidence:.2f}"
+        )
 
         # =============================
         # Return

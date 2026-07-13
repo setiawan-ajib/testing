@@ -23,8 +23,7 @@ import time
 from argparse import Namespace
 from ui.output_ui import ADASUI
 from config import shared_config
-from OCR.bib_ocr import BibOCR
-
+from OCR.bib_manager import BibManager
 
 FILE = Path(__file__).resolve()
 ROOT = FILE.parents[0]
@@ -79,7 +78,7 @@ ui = ADASUI(
     lane_colors=lane_colors
 )
 
-ocr = BibOCR()
+bib_manager = BibManager()
 
 def set_open_settings_callback(cb):
     global _on_open_settings_cb
@@ -331,16 +330,30 @@ def run(
                 dist = obj["distance_m"]
                 conf = obj["confidence"]
 
-                crop = im0_raw[
-                    int(y1):int(y2),
-                    int(x1):int(x2)
-                ]
-                ocr_result = ocr.process(crop)
-                if ocr_result.valid:
-                    print(
-                        f"Track {track_id} : {ocr_result.number}"
+                if cls == "bib-number":
+                    x1_crop = max(int(x1),0)
+                    y1_crop = max(int(y1),0)
+                    x2_crop = min(int(x2), im0_raw.shape[1])
+                    y2_crop = min(int(y2), im0_raw.shape[0])
+
+                    bib_crop = im0_raw[
+                        y1_crop:y2_crop,
+                        x1_crop:x2_crop
+                    ]
+
+                    bib_result = bib_manager.update(
+                        track_id,
+                        bib_crop
                     )
 
+                    print(
+                        f"[BIB RESULT] "
+                        f"ID:{track_id} "
+                        f"OCR:{bib_result['ocr_number']} "
+                        f"CONF:{bib_result['confidence']:.2f} "
+                        f"FINAL:{bib_result['final_number']}"
+                    )
+                
                 annotator.box_label(
                     [x1, y1, x2, y2],
                     f"{cls.upper()} ID:{track_id} | {conf:.2f}",
@@ -399,6 +412,7 @@ def run(
                 cv2.waitKey(1)
 
 
+    bib_manager.cleanup()
     set_camera_status(False)
     
     if DISPLAY_RUNNING:
