@@ -47,7 +47,6 @@ class ImagePreprocessor:
 
     def resize(self, image):
         target_width = OCRConfig.RESIZE_WIDTH
-
         if OCRConfig.KEEP_ASPECT_RATIO:
             h, w = image.shape[:2]
 
@@ -62,9 +61,7 @@ class ImagePreprocessor:
                 (target_width, target_height),
                 interpolation=cv2.INTER_CUBIC
             )
-
         else:
-
             return cv2.resize(
                 image,
                 (OCRConfig.RESIZE_WIDTH,
@@ -100,7 +97,6 @@ class ImagePreprocessor:
             [-1, 5, -1],
             [0, -1, 0]
         ])
-
         return cv2.filter2D(
             image,
             -1,

@@ -331,7 +331,7 @@ def run(
                 conf = obj["confidence"]
 
                 if cls == "bib-number":
-                    pad = 20
+                    pad = 0
                     x1_crop = max(int(x1 - pad),0)
                     y1_crop = max(int(y1 - pad),0)
                     x2_crop = min(int(x2 + pad), im0_raw.shape[1])

@@ -12,7 +12,6 @@ class BibValidator:
         text = str(text)
         text = text.strip()
         replacements = {
-
             "O": "0",
             "I": "1",
             "L": "1",
@@ -26,7 +25,6 @@ class BibValidator:
                 old,
                 new
             )
-
         return text
 
     def validate(self, text):
@@ -44,5 +42,4 @@ class BibValidator:
 
         if len(text) > self.max_length:
             return False, None
-
         return True, text

@@ -20,7 +20,6 @@ class BibManager:
         image,
         frame_id=0
     ):
-        
         current = frame_id
         if track_id in self.last_process:
             diff = current - self.last_process[track_id]

@@ -21,7 +21,6 @@ class OCRWorker:
         track_id,
         image
     ):
-
         if image is None:
             return
         with self.lock:
@@ -69,7 +68,6 @@ class OCRWorker:
         self,
         track_id
     ):
-
         return self.results.get(
             track_id,
             {

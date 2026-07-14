@@ -14,7 +14,6 @@ class BibMemory:
         number,
         confidence
     ):
-
         now = time.time()
         if track_id not in self.memory:
             self.memory[track_id] = {
@@ -45,13 +44,10 @@ class BibMemory:
 
         return data["final"]
 
-
-
     def _vote(
         self,
         history
     ):
-        
         if len(history) < self.min_votes:
             return None
 
@@ -63,28 +59,23 @@ class BibMemory:
             )
 
         counter = Counter(values)
-
         result, count = counter.most_common(1)[0]
 
         if count >= self.min_votes:
             return result
-
         return None
 
     def get(
         self,
         track_id
     ):
-
         if track_id in self.memory:
             return self.memory[track_id]["final"]
-
         return None
 
     def cleanup(self):
         now = time.time()
         remove = []
-
         for track_id, data in self.memory.items():
             if now - data["last_seen"] > self.expire_time:
                 remove.append(track_id)

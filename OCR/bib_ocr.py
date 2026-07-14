@@ -26,31 +26,11 @@ class BibOCR:
         # processed = self.preprocessor.process(image)        
         # text, confidence = self.engine.read(processed)
         text, confidence = self.engine.read(image)
-
-        # print(
-        #     "[BEFORE VALIDATE]",
-        #     text,
-        #     confidence
-        # )
-
         valid, clean_text = self.validator.validate(text)
-
-        # print(
-        #     "[VALIDATOR]",
-        #     valid,
-        #     clean_text
-        # )
-
         if valid:
             text = clean_text
         else:
             text = None
-
-        # print(
-        #     f"[BIB OCR] "
-        #     f"TEXT:{text} "
-        #     f"CONF:{confidence:.2f}"
-        # )
 
         result = OCRResult()
         result.number = text

@@ -21,15 +21,9 @@ class PaddleEngine:
 
         if image is None:
             return None, 0.0
-        
-        # print(
-        #     "[OCR INPUT SIZE]",
-        #     image.shape
-        # )
 
         try:
             result = self.ocr.predict(image)
-            # print(result)
             best_text = None
             best_conf = 0.0
 
@@ -42,16 +36,10 @@ class PaddleEngine:
                 if "res" in data:
                     data = data["res"]
 
-                # print(
-                #     "[OCR DATA KEYS]",
-                #     data.keys()
-                # )
-                
                 rec_texts = data.get(
                     "rec_texts",
                     []
                 )
-
                 rec_scores = data.get(
                     "rec_scores",
                     []
@@ -61,7 +49,6 @@ class PaddleEngine:
                     rec_texts,
                     rec_scores
                 ):
-
                     number = re.sub(
                         r"\D",
                         "",
@@ -83,11 +70,8 @@ class PaddleEngine:
             return best_text, best_conf
 
         except Exception as e:
-
             import traceback
-
             print("================ OCR ERROR ================")
             traceback.print_exc()
             print("===========================================")
-
             return None, 0.0
