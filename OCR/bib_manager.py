@@ -1,11 +1,16 @@
 from OCR.bib_ocr import BibOCR
 from OCR.bib_memory import BibMemory
+from OCR.ocr_worker import OCRWorker
 from OCR.ocr_config import OCRConfig
 import time
 class BibManager:
     def __init__(self):
         self.ocr = BibOCR()
         self.memory = BibMemory()
+        self.worker = OCRWorker(
+            self.ocr,
+            self.memory
+        )
         self.last_process = {}
         self.ocr_interval = OCRConfig.OCR_INTERVAL
 
@@ -20,33 +25,16 @@ class BibManager:
         if track_id in self.last_process:
             diff = current - self.last_process[track_id]
             if diff < self.ocr_interval:
-                return {
-                    "track_id": track_id,
-                    "ocr_number": None,
-                    "confidence": 0.0,
-                    "final_number": self.memory.get(track_id)
-                }
+                return self.worker.get_result(track_id)
         
         self.last_process[track_id] = current
-        result = self.ocr.process(image)
-        final_number = None
+        self.worker.submit(track_id, image)
 
-        if result.valid:
-            final_number = self.memory.update(
-                track_id,
-                result.number,
-                result.confidence
-            )
-
-        return {
-            "track_id": track_id,
-            "ocr_number": result.number,
-            "confidence": result.confidence,
-            "final_number": final_number
-        }
+        return self.worker.get_result(track_id)
 
     def get(self, track_id):
         return self.memory.get(track_id)
 
     def cleanup(self):
+        self.worker.stop()
         self.memory.cleanup()
