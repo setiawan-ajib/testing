@@ -36,7 +36,8 @@ class BibValidator:
             return False, None
 
         if OCRConfig.ONLY_NUMERIC:
-            return False, None
+            if not text.isdigit():
+                return False, None
 
         if len(text) < self.min_length:
             return False, None

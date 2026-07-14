@@ -21,8 +21,15 @@ class PaddleEngine:
 
         if image is None:
             return None, 0.0
+        
+        # print(
+        #     "[OCR INPUT SIZE]",
+        #     image.shape
+        # )
+
         try:
             result = self.ocr.predict(image)
+            # print(result)
             best_text = None
             best_conf = 0.0
 
@@ -32,6 +39,14 @@ class PaddleEngine:
                 if data is None:
                     continue
 
+                if "res" in data:
+                    data = data["res"]
+
+                # print(
+                #     "[OCR DATA KEYS]",
+                #     data.keys()
+                # )
+                
                 rec_texts = data.get(
                     "rec_texts",
                     []

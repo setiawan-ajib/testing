@@ -331,15 +331,21 @@ def run(
                 conf = obj["confidence"]
 
                 if cls == "bib-number":
-                    x1_crop = max(int(x1),0)
-                    y1_crop = max(int(y1),0)
-                    x2_crop = min(int(x2), im0_raw.shape[1])
-                    y2_crop = min(int(y2), im0_raw.shape[0])
+                    pad = 20
+                    x1_crop = max(int(x1 - pad),0)
+                    y1_crop = max(int(y1 - pad),0)
+                    x2_crop = min(int(x2 + pad), im0_raw.shape[1])
+                    y2_crop = min(int(y2 + pad), im0_raw.shape[0])
 
                     bib_crop = im0_raw[
                         y1_crop:y2_crop,
                         x1_crop:x2_crop
-                    ]
+                    ].copy()
+
+                    # cv2.imwrite(
+                    #     f"debug_bib_{track_id}.jpg",
+                    #     bib_crop
+                    # )
 
                     bib_result = bib_manager.update(
                         track_id,
