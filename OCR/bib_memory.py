@@ -1,16 +1,11 @@
 from collections import defaultdict, Counter
 import time
+from OCR.ocr_config import OCRConfig
 class BibMemory:
-    def __init__(
-        self,
-        max_history=20,
-        min_votes=3,
-        expire_time=5
-    ):
-
-        self.max_history = max_history
-        self.min_votes = min_votes
-        self.expire_time = expire_time
+    def __init__(self):
+        self.max_history = OCRConfig.MEMORY_SIZE
+        self.min_votes = OCRConfig.LOCK_AFTER_SUCCESS
+        self.expire_time = OCRConfig.MEMORY_EXPIRE_TIME
         self.memory = {}
 
     def update(

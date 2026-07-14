@@ -1,13 +1,9 @@
 import re
+from OCR.ocr_config import OCRConfig
 class BibValidator:
-    def __init__(
-        self,
-        min_length=3,
-        max_length=6
-    ):
-
-        self.min_length = min_length
-        self.max_length = max_length
+    def __init__(self):
+        self.min_length = OCRConfig.MIN_DIGITS
+        self.max_length = OCRConfig.MAX_DIGITS
 
     def clean(self, text):
         if text is None:
@@ -23,7 +19,6 @@ class BibValidator:
             "S": "5",
             "B": "8",
             "Z": "2"
-
         }
 
         for old, new in replacements.items():
@@ -40,7 +35,7 @@ class BibValidator:
         if text is None:
             return False, None
 
-        if not text.isdigit():
+        if OCRConfig.ONLY_NUMERIC:
             return False, None
 
         if len(text) < self.min_length:

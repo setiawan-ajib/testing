@@ -1,12 +1,13 @@
 from OCR.bib_ocr import BibOCR
 from OCR.bib_memory import BibMemory
+from OCR.ocr_config import OCRConfig
 import time
 class BibManager:
     def __init__(self):
         self.ocr = BibOCR()
         self.memory = BibMemory()
         self.last_process = {}
-        self.ocr_interval = 10
+        self.ocr_interval = OCRConfig.OCR_INTERVAL
 
     def update(
         self,

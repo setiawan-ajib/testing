@@ -5,13 +5,11 @@ class OCRConfig:
     USE_GPU = False
     LANGUAGE = "en"
     USE_ANGLE_CLASSIFIER = False
-
-    # ===========================
-    # OCR Processing
-    # ===========================
-    OCR_INTERVAL = 5
+    USE_TEXTLINE_ORIENTATION = False
+    USE_DOC_ORIENTATION_CLASSIFY = False
+    USE_DOC_UNWARPING = False
     MIN_CONFIDENCE = 0.50
-
+    
     # ===========================
     # Image Preprocess
     # ===========================
@@ -34,3 +32,9 @@ class OCRConfig:
     # ===========================
     MEMORY_SIZE = 20
     LOCK_AFTER_SUCCESS = 5
+    MEMORY_EXPIRE_TIME = 5
+
+    # ===========================
+    # OCR Manager
+    # ===========================
+    OCR_INTERVAL = 10

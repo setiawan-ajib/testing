@@ -29,8 +29,14 @@ class ImagePreprocessor:
         if OCRConfig.APPLY_CLAHE:
             gray = self.apply_clahe(gray)
 
+        if OCRConfig.APPLY_DENOISE:
+            gray = self.denoise(gray)
+
         if OCRConfig.APPLY_SHARPEN:
             gray = self.sharpen(gray)
+
+        if OCRConfig.APPLY_THRESHOLD:
+            gray = self.threshold(gray)
 
         img = cv2.cvtColor(
             gray,

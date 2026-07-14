@@ -8,9 +8,9 @@ class PaddleEngine:
         self.ocr = PaddleOCR(
             device="cpu",
             lang=OCRConfig.LANGUAGE,
-            use_textline_orientation=False,
-            use_doc_orientation_classify=False,
-            use_doc_unwarping=False
+            use_textline_orientation=OCRConfig.USE_TEXTLINE_ORIENTATION,
+            use_doc_orientation_classify=OCRConfig.USE_DOC_ORIENTATION_CLASSIFY,
+            use_doc_unwarping=OCRConfig.USE_DOC_UNWARPING
         )
         print("[OCR] PaddleOCR ready")
 
@@ -57,6 +57,9 @@ class PaddleEngine:
                         continue
 
                     score = float(score)
+
+                    if score < OCRConfig.MIN_CONFIDENCE:
+                        continue
 
                     if score > best_conf:
                         best_conf = score
