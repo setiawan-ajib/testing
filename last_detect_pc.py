@@ -360,6 +360,17 @@ def run(
                         f"CONF:{bib_result['confidence']:.2f} "
                         f"FINAL:{bib_result['final_number']}"
                     )
+
+                    if bib_result["ocr_number"] is None:
+                        continue
+
+                    annotator.box_label(
+                        [x1, y1, x2, y2],
+                        f"{bib_result['ocr_number']} {bib_result['confidence']:.2f}",
+                        color=colors(track_id, True)
+                    )
+
+                    continue
                 
                 annotator.box_label(
                     [x1, y1, x2, y2],
