@@ -33,8 +33,10 @@ class OCRConfig:
     MEMORY_SIZE = 20
     LOCK_AFTER_SUCCESS = 5
     MEMORY_EXPIRE_TIME = 5
+    OCR_RETRY_FRAME = 15
+    MAX_RETRY = 5
 
     # ===========================
     # OCR Manager
     # ===========================
-    OCR_INTERVAL = 10
+    # OCR_INTERVAL = 10

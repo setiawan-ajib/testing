@@ -359,6 +359,9 @@ def run(
                         f"OCR:{bib_result['ocr_number']} "
                         f"CONF:{bib_result['confidence']:.2f} "
                         f"FINAL:{bib_result['final_number']}"
+                        f"LOCK:{bib_manager.memory.is_locked(track_id)} "
+                        f"PROCESS:{bib_manager.memory.is_processing(track_id)} "
+                        f"RETRY:{bib_manager.memory.get_retry(track_id)}"
                     )
 
                     if bib_result["ocr_number"] is None:

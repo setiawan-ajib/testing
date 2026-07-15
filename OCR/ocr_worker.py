@@ -50,10 +50,20 @@ class OCRWorker:
                         result.number,
                         result.confidence
                     )
-                else:
-                    final_number = self.memory.get(
-                        track_id
+                    self.memory.update_best(
+                        track_id,
+                        result.number,
+                        result.confidence
                     )
+                    self.memory.reset_retry(track_id)
+                else:
+                    final_number = self.memory.get(track_id)
+                    self.memory.increase_retry(track_id)
+
+                self.memory.clear_processing(track_id)
+
+                if final_number is not None:
+                    self.memory.lock(track_id)
 
                 self.results[track_id] = {
                     "ocr_number": result.number,
