@@ -23,18 +23,18 @@ from PIL import Image
 from torch.cuda import amp
 
 # Import 'ultralytics' package or install if missing
-try:
-    import ultralytics
+# try:
+#     import ultralytics
 
-    assert hasattr(ultralytics, "__version__")  # verify package is not directory
-except (ImportError, AssertionError):
-    import os
+#     assert hasattr(ultralytics, "__version__")  # verify package is not directory
+# except (ImportError, AssertionError):
+#     import os
 
-    os.system("pip install -U ultralytics")
-    import ultralytics
+#     os.system("pip install -U ultralytics")
+#     import ultralytics
 
-from ultralytics.utils.plotting import Annotator, colors, save_one_box
-
+# from ultralytics.utils.plotting import Annotator, colors, save_one_box
+from utils.plots import Annotator, colors, save_one_box
 from utils import TryExcept
 from utils.dataloaders import exif_transpose, letterbox
 from utils.general import (

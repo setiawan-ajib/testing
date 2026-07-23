@@ -4,7 +4,8 @@ import sys
 import threading
 from pathlib import Path
 import torch
-from ultralytics.utils.plotting import Annotator, colors
+# from ultralytics.utils.plotting import Annotator, colors
+from utils.plots import Annotator, colors
 from models.common import DetectMultiBackend
 from utils.dataloaders import IMG_FORMATS, VID_FORMATS, LoadImages, LoadScreenshots, LoadStreams
 from utils.general import (
@@ -43,12 +44,20 @@ show_ego_lane_roi = True
 DISPLAY_W = 1024
 DISPLAY_H = 600
 
-WARNING_LOGO     = cv2.imread("assets/data/pictures/warning.png", cv2.IMREAD_UNCHANGED)
-STEER_LEFT_ICON  = cv2.imread("assets/data/pictures/left.png",    cv2.IMREAD_UNCHANGED)
-STEER_RIGHT_ICON = cv2.imread("assets/data/pictures/right.png",   cv2.IMREAD_UNCHANGED)
-SETTING_ICON     = cv2.imread("assets/data/pictures/setting.png", cv2.IMREAD_UNCHANGED)
-BACK_ICON        = cv2.imread("assets/data/pictures/back.png",    cv2.IMREAD_UNCHANGED)
-EGO_LANE_ICON    = cv2.imread("assets/data/pictures/lane.png", cv2.IMREAD_UNCHANGED)
+def resource_path(relative):
+    if getattr(sys, 'frozen', False):
+        base = sys._MEIPASS
+    else:
+        base = os.path.dirname(__file__)
+
+    return os.path.join(base, relative)
+
+WARNING_LOGO     = cv2.imread(resource_path("assets/data/pictures/warning.png"), cv2.IMREAD_UNCHANGED)
+STEER_LEFT_ICON  = cv2.imread(resource_path("assets/data/pictures/left.png"),    cv2.IMREAD_UNCHANGED)
+STEER_RIGHT_ICON = cv2.imread(resource_path("assets/data/pictures/right.png"),   cv2.IMREAD_UNCHANGED)
+SETTING_ICON     = cv2.imread(resource_path("assets/data/pictures/setting.png"), cv2.IMREAD_UNCHANGED)
+BACK_ICON        = cv2.imread(resource_path("assets/data/pictures/back.png"),    cv2.IMREAD_UNCHANGED)
+EGO_LANE_ICON    = cv2.imread(resource_path("assets/data/pictures/lane.png"), cv2.IMREAD_UNCHANGED)
 
 DISPLAY_ENABLED = False
 DISPLAY_RUNNING = False
@@ -490,8 +499,13 @@ def parse_opt():
     """
     #----versi harcode JETSON
     opt = Namespace(
-        weights=[ROOT / "best.pt"],
-        source="assets/data/videos/bib_test.mp4",
+        # weights=[ROOT / "best.pt"],
+        weights=[
+            Path(resource_path("best.pt"))
+        ],
+        source=[
+            Path(resource_path("assets/data/videos/bib_test.mp4"))
+        ],
         # source="0",
         device="CPU",
         view_img=True,

@@ -3,6 +3,7 @@ import threading
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtCore import QPropertyAnimation, QEasingCurve, QRect, Qt, QTimer
 from PyQt5.QtWidgets import QLabel
+import os
 
 from config.config_wiring import (
     wire_config_panel,
@@ -19,6 +20,13 @@ from config.settings_store import save_settings, load_settings
 import last_detect_pc
 from utils.click_sound import ClickSoundFilter
 
+def resource_path(relative_path):
+    if getattr(sys, 'frozen', False):
+        base_path = sys._MEIPASS
+    else:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
 
 def _lbl(text):
     return (
@@ -300,7 +308,8 @@ class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
 
-        uic.loadUi("ui/menu.ui", self)
+        ui_file = resource_path("ui/menu.ui")
+        uic.loadUi(ui_file, self)
 
         self.statusbar.showMessage("System Ready...")
         self.panelConfiguration.hide()
