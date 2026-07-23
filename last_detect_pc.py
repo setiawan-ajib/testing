@@ -503,9 +503,7 @@ def parse_opt():
         weights=[
             Path(resource_path("best.pt"))
         ],
-        source=[
-            Path(resource_path("assets/data/videos/bib_test.mp4"))
-        ],
+        source=str(resource_path("assets/data/videos/bib_test.mp4")),
         # source="0",
         device="CPU",
         view_img=True,
