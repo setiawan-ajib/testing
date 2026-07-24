@@ -61,6 +61,8 @@ EGO_LANE_ICON    = cv2.imread(resource_path("assets/data/pictures/lane.png"), cv
 
 DISPLAY_ENABLED = False
 DISPLAY_RUNNING = False
+WINDOW_CLOSED_BY_USER = False
+DETECTION_FINISHED = False
 _camera_has_frames = False
 _camera_status_lock = threading.Lock()
 
@@ -114,23 +116,25 @@ def enable_display():
     DISPLAY_ENABLED = True
     
 def disable_display():
-    global DISPLAY_ENABLED, DISPLAY_RUNNING
+    global DISPLAY_ENABLED, DISPLAY_RUNNING, WINDOW_CLOSED_BY_USER
     DISPLAY_ENABLED = False
     try:
         cv2.destroyWindow("ADAS")
     except Exception:
         pass
     DISPLAY_RUNNING = False
+    WINDOW_CLOSED_BY_USER = True
 
 def start_detection():
     global _stop_flag, _detect_thread, DISPLAY_RUNNING
+    global DETECTION_FINISHED
 
     with _thread_lock:
         if _detect_thread is not None and _detect_thread.is_alive():
             return
 
         _stop_flag = False
-
+        DETECTION_FINISHED = False
         DISPLAY_RUNNING = False
 
         opt = parse_opt()
@@ -202,6 +206,7 @@ def run(
     vid_stride=1,  # video frame-rate stride
 ):
     global DISPLAY_ENABLED, DISPLAY_RUNNING, _stop_flag
+    global WINDOW_CLOSED_BY_USER
     global lane_frame_id, lane_cache
     global _mouse_x, _mouse_y, _mouse_clicked
     global _camera_has_frames
@@ -406,6 +411,7 @@ def run(
                     cv2.resizeWindow("ADAS", DISPLAY_W, DISPLAY_H)
                     cv2.setMouseCallback("ADAS", _mouse_callback)
                     DISPLAY_RUNNING = True
+                    WINDOW_CLOSED_BY_USER = False
 
                 cv2.imshow("ADAS", im_display)
 
@@ -425,7 +431,9 @@ def run(
                 except cv2.error:
                     visible = -1
 
-                if visible < 1 or key == ord('q'):
+                if (visible < 1 and not WINDOW_CLOSED_BY_USER) or key == ord('q'):
+                    print("[DETECT] Video window closed.")
+                    _stop_flag = True
                     DISPLAY_ENABLED = False
                     DISPLAY_RUNNING = False
                     try:
@@ -442,8 +450,11 @@ def run(
                 cv2.waitKey(1)
 
 
+    global DETECTION_FINISHED
+
     bib_manager.cleanup()
     set_camera_status(False)
+    DETECTION_FINISHED = True
     
     if DISPLAY_RUNNING:
         try:

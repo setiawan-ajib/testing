@@ -343,7 +343,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self._anim_close2.finished.connect(self._on_panel2_close_finished)
 
         self.btnStart.setCheckable(True)
-        self.btnStart.clicked.connect(self.toggle_display)
+        self.btnStart.clicked.connect(self.start_button_clicked)
 
         # Panel 1 – Configuration
         self.btnConfiguration.clicked.connect(self.toggle_config_panel)
@@ -364,7 +364,7 @@ class MainWindow(QtWidgets.QMainWindow):
         if hasattr(self, 'btnCardConfigHardware'):
             self.btnCardConfigHardware.clicked.connect(self.toggle_config_panel)
         if hasattr(self, 'btnCardStart'):
-            self.btnCardStart.clicked.connect(self.toggle_display)
+            self.btnCardStart.clicked.connect(self.start_button_clicked)
         if hasattr(self, 'btnCloseCameraCard'):
             self.btnCloseCameraCard.clicked.connect(self._close_camera_card)
         if hasattr(self, 'cardCameraAlert'):
@@ -388,10 +388,25 @@ class MainWindow(QtWidgets.QMainWindow):
         self._camera_check_timer.start()
 
         # ── Langsung jalankan detection saat aplikasi dibuka ──
-        self._start_detection_background()
+        # self._start_detection_background()
 
         # ── Registrasikan callback tombol Setting di video overlay ──
         last_detect_pc.set_open_settings_callback(self._on_video_open_settings)
+
+    def start_button_clicked(self):
+
+        thread_alive = (
+            last_detect_pc._detect_thread is not None and
+            last_detect_pc._detect_thread.is_alive()
+        )
+
+        # Jalankan detection hanya sekali
+        if not thread_alive:
+            self._start_detection_background()
+
+        # Setelah detection hidup,
+        # fungsi lama tetap dipakai
+        self.toggle_display()
 
 
     def _auto_load_last_settings(self):
@@ -454,14 +469,22 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.show()
                 self.raise_()
 
+        if last_detect_pc.DETECTION_FINISHED:
+            last_detect_pc.DETECTION_FINISHED = False
+            self.btnStart.setChecked(False)
+            self.show()
+            self.raise_()
+            self.activateWindow()
+            self.statusbar.showMessage("Video finished. System Ready.")
+            return
+
         thread_alive = (
             last_detect_pc._detect_thread is not None and
             last_detect_pc._detect_thread.is_alive()
         )
         if not thread_alive:
-            print("[MAIN] Detection thread died unexpectedly, restarting...")
-            self._start_detection_background()
-
+            return
+        
     def toggle_display(self):
         if self.btnStart.isChecked():
             last_detect_pc.enable_display()
@@ -641,6 +664,10 @@ class MainWindow(QtWidgets.QMainWindow):
             last_detect_pc._detect_thread is not None and
             last_detect_pc._detect_thread.is_alive()
         )
+
+        if not thread_alive:
+            self.cardCameraAlert.hide()
+            return
         
         camera_ok = thread_alive and last_detect_pc.get_camera_status()
         
